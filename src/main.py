@@ -1,2 +1,5 @@
-print("Hola Mundo")
-print(2+2)
+# Librerías
+
+# Configuración del proyecto
+
+# Páginas
