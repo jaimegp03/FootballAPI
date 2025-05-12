@@ -29,6 +29,17 @@ git pull origin
     pip install -r requirements.txt
     ```
 
+## Iniciar SQLite3
+1. Ejecutar el programa
+2. Ejecutar primero el comando:
+    ```bash
+    .mode box
+    ```
+3. Guardar los cambios realizados en un archivo:
+    ```bash
+    .backup nombre_Archivo.db
+    ```
+
 
 
 Ejecutar la API:
