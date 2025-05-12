@@ -25,8 +25,8 @@ CREATE TABLE partidos (
 -- Datos de equipos
 INSERT INTO equipos (nombre, creacion) VALUES
     ('Oviedo', 2025),
-    ('Almería', 2025),
-    ('León', 2025),
+    ('Almeria', 2025),
+    ('Leon', 2025),
     ('Huelva', 2025),
     ('Sevilla', 2025),
     ('Santander', 2025),
