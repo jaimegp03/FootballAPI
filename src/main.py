@@ -1,8 +1,16 @@
 # Librerías
-from flask import Flask, jsonify                    # Librería para crear la API, y devolver respuestas en formato JSON
-from flask_cors import CORS                         # Política de CORS, para permitir acceso ajenos
-from JGVutils import SQLiteConnection               # Librería para realizar conexiones con una base de datos SQLite
+from flask import Flask, jsonify, render_template                   # Librería para crear la API, y devolver respuestas en formato JSON
+from flask_cors import CORS                                         # Política de CORS, para permitir acceso ajenos
+from flask import Response 
+import json
+from JGVutils import SQLiteConnection                               # Librería para realizar conexiones con una base de datos SQLite
 from Consultas import *
+import os
+
+# Configurar Flask para usar las carpetas 'templates' y 'static'
+application = Flask(__name__, 
+                   template_folder=os.path.join(os.getcwd(), 'src', 'templates'),
+                   static_folder=os.path.join(os.getcwd(), 'src', 'static'))
 
 
 # Configuración del proyecto
@@ -15,8 +23,9 @@ conexion = SQLiteConnection("FootballAPI.db")           # Conexión a la base de
 
 # Páginas
 @application.route("/")
+@application.route("/")
 def indice_contenido():
-    return "imprimir páginas disponibles"
+    return render_template("index.html")
 
 
 
@@ -50,3 +59,8 @@ def obtener_partidos_ganados_de_equipo(equipo):
 def obtener_clasificacion():
     clasificacion = conexion.execute_query(consulta_clasificaciones)
     return clasificacion
+
+@application.route("/equiposmasgoleadores")
+def obtener_goleadores():
+    goleadores = conexion.execute_query(consulta_equipos_mas_goleadores)
+    return goleadores

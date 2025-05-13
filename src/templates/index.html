@@ -1,0 +1,20 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Consulta Liga de Fútbol</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Bienvenido a la API de la Liga de Fútbol</h1>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('obtener_equipos') }}">Ver todos los equipos</a></li>
+            <li><a href="{{ url_for('obtener_partidos_ganados_de_equipo', equipo=2) }}">Partidos ganados por un equipo</a></li>
+            <li><a href="{{ url_for('obtener_clasificacion') }}">Clasificación de la liga</a></li>
+            <li><a href="{{ url_for('obtener_goleadores') }}">Equipos más goleadores</a></li>
+        </ul>
+    </nav>
+</body>
+</html>

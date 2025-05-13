@@ -1,0 +1,10 @@
+{
+    "mensaje": "Bienvenido a la API de la Liga de F\u00fatbol",
+    "rutas_disponibles": {
+      "/clasificacion": "Clasificaci\u00f3n de la liga",
+      "/equipos": "Devuelve todos los equipos",
+      "/equipos/<id>": "Devuelve los datos de un equipo espec\u00edfico",
+      "/equiposmasgoleadores": "Equipos m\u00e1s goleadores de la liga",
+      "/partidosGanadosEquipo/<equipo>": "Cantidad de partidos ganados por un equipo"
+    }
+  }

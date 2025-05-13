@@ -1,0 +1,32 @@
+<!-- templates/consulta.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultado de Consulta</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>{{ titulo }}</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                {% for header in headers %}
+                    <th>{{ header }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for fila in filas %}
+                <tr>
+                    {% for celda in fila %}
+                        <td>{{ celda }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <a href="{{ url_for('indice_contenido') }}">Volver al menú principal</a>
+</body>
+</html>
