@@ -1,10 +1,8 @@
 # Librerías
 from flask import Flask, jsonify, render_template                   # Librería para crear la API, y devolver respuestas en formato JSON
 from flask_cors import CORS                                         # Política de CORS, para permitir acceso ajenos
-from flask import Response 
-import json
 from JGVutils import SQLiteConnection                               # Librería para realizar conexiones con una base de datos SQLite
-from Consultas import *
+from Consultas import consulta_clasificaciones, consulta_equipos_mas_goleadores
 import os
 
 # Configurar Flask para usar las carpetas 'templates' y 'static'
@@ -23,11 +21,46 @@ conexion = SQLiteConnection("FootballAPI.db")           # Conexión a la base de
 
 # Páginas
 @application.route("/")
-@application.route("/")
 def indice_contenido():
-    return render_template("index.html")
+    # Obtener todos los equipos
+    equipos = conexion.execute_query("SELECT * FROM equipos")
+    if equipos is None:
+        equipos = []
 
+    # Consultar número de jugadores por equipo
+    jugadores_por_equipo = conexion.execute_query("""
+        SELECT equipo, COUNT(DISTINCT id) AS 'Numero de jugadores' 
+        FROM jugadores GROUP BY equipo;
+    """)
+    if jugadores_por_equipo is None:
+        jugadores_por_equipo = []
 
+    # Consultar clasificación
+    clasificacion = conexion.execute_query(consulta_clasificaciones)
+    if clasificacion is None:
+        clasificacion = []
+
+    # Consultar equipos más goleadores
+    goleadores = conexion.execute_query(consulta_equipos_mas_goleadores)
+    if goleadores is None:
+        goleadores = []
+
+    # 💡 Aquí empieza la parte que pediste: Imprimir valores para depurar
+    print("\nDEBUG - Datos obtenidos:\n")
+    print("Equipos:", equipos)
+    print("Jugadores por equipo:", jugadores_por_equipo)
+    print("Clasificación:", clasificacion)
+    print("Goleadores:", goleadores)
+    print("\n" + "-"*50 + "\n")
+
+    # Renderizar la plantilla pasando todas las variables
+    return render_template(
+        "index.html",
+        equipos=equipos,
+        jugadores_por_equipo=jugadores_por_equipo,
+        clasificacion=clasificacion,
+        goleadores=goleadores
+    )
 
 @application.route("/equipos")
 def obtener_equipos():
@@ -46,12 +79,17 @@ def obtener_equipo(id):
 
 
 @application.route("/partidosGanadosEquipo/<equipo>")
-def obtener_partidos_ganados_de_equipo(equipo):
-    partidos_ganados = conexion.execute_query(
-        "SELECT COUNT(DISTINCT id) AS partidos_ganados FROM partidos WHERE (equipo1 = ? AND golesEquipo1 > golesEquipo2) OR (equipo2 = ? AND golesEquipo2 > golesEquipo1);",
-        [equipo, equipo]
-    )
-    return partidos_ganados[0]
+def consulta_partidos_ganados(equipo):
+    resultado = conexion.execute_query("""
+        SELECT COUNT(DISTINCT id) 
+        FROM partidos 
+        WHERE (equipo1 = ? AND golesEquipo1 > golesEquipo2) 
+           OR (equipo2 = ? AND golesEquipo2 > golesEquipo1);
+    """, [equipo, equipo])
+    return jsonify({
+        "equipo": equipo,
+        "partidos_ganados": resultado[0][0] if resultado and len(resultado) > 0 else 0
+    })
 
 
 

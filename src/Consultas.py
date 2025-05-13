@@ -70,3 +70,30 @@ ORDER BY goles_favor DESC;
 
 
 """
+
+consulta_partidos_ganados = """
+
+SELECT 
+    equipo_id,
+    SUM(goles) AS goles_favor
+FROM (
+    SELECT equipo1 AS equipo_id, golesEquipo1 AS goles FROM partidos
+    UNION ALL
+    SELECT equipo2 AS equipo_id, golesEquipo2 AS goles FROM partidos
+)
+GROUP BY equipo_id
+ORDER BY goles_favor DESC;
+
+
+"""
+
+consulta_jugadores_por_equipo = """
+
+        SELECT equipo, COUNT(DISTINCT id) AS 'Numero de jugadores' 
+        FROM jugadores GROUP BY equipo;
+"""
+
+consulta_obtener_todos_equipos = """
+
+        "SELECT * FROM equipos"
+"""
