@@ -1,0 +1,44 @@
+<!-- templates/goleadores.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>🥅 Máximos Goleadores</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header>
+    <h1>🥅 Máximos Goleadores de la Competición</h1>
+    <nav>
+        <a href="{{ url_for('indice_contenido') }}">Volver al inicio</a>
+    </nav>
+</header>
+
+<main>
+    {% if jugadores %}
+        <table class="tabla-goleadores">
+            <thead>
+                <tr>
+                    <th>Jugador</th>
+                    <th>Equipo</th>
+                    <th>Goles</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for jugador in jugadores %}
+                    <tr>
+                        <td>{{ jugador[0] }}</td>
+                        <td>{{ jugador[1] }}</td>
+                        <td><strong>{{ jugador[2] }}</strong></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No hay estadísticas de goles disponibles.</p>
+    {% endif %}
+</main>
+
+</body>
+</html>

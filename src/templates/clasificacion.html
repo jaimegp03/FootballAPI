@@ -1,0 +1,48 @@
+<!-- templates/clasificacion.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>🏆 Clasificación de la Liga</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <header>
+        <h1>🏆 Clasificación de la Liga</h1>
+        <nav>
+            <a href="{{ url_for('indice_contenido') }}">Volver al inicio</a>
+        </nav>
+    </header>
+
+    <main>
+        {% if clasificacion %}
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Equipo</th>
+                        <th>Puntos</th>
+                        <th>Goles a Favor</th>
+                        <th>Goles en Contra</th>
+                        <th>Diferencia de Goles</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for fila in clasificacion %}
+                        <tr>
+                            <td>{{ fila[0] }}</td>
+                            <td>{{ fila[1] }}</td>
+                            <td>{{ fila[2] }}</td>
+                            <td>{{ fila[3] }}</td>
+                            <td>{{ fila[4] }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No hay datos disponibles en la clasificación.</p>
+        {% endif %}
+    </main>
+
+</body>
+</html>

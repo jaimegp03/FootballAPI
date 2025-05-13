@@ -1,0 +1,33 @@
+<!-- templates/equipos.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Equipos de la Liga</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <header>
+        <h1>👥 Equipos de la Liga</h1>
+        <a href="{{ url_for('indice_contenido') }}">Volver al inicio</a>
+    </header>
+
+    <main class="equipos">
+        {% if equipos %}
+            <div class="tarjetas">
+                {% for equipo in equipos %}
+                    <div class="tarjeta">
+                        <h3>{{ equipo[1] }}</h3>
+                        <p><strong>Año de fundación:</strong> {{ equipo[2] }}</p>
+                        <p><strong>Origen:</strong> {{ equipo[3] }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No hay equipos disponibles.</p>
+        {% endif %}
+    </main>
+
+</body>
+</html>

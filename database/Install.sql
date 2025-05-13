@@ -2,6 +2,7 @@ CREATE TABLE equipos (
     id INTEGER PRIMARY KEY,     -- Identificador del equipo
     nombre TEXT,                -- Nombre del equipo
     creacion INTEGER            -- Año de creación
+    origen TEXT
 );
 
 CREATE TABLE jugadores (
@@ -23,19 +24,19 @@ CREATE TABLE partidos (
 );
 
 -- Datos de equipos
-INSERT INTO equipos (nombre, creacion) VALUES
-    ('Oviedo', 2025),
-    ('Almeria', 2025),
-    ('Leon', 2025),
-    ('Huelva', 2025),
-    ('Sevilla', 2025),
-    ('Santander', 2025),
-    ('Las Palmas', 2025),
-    ('Segovia', 2025),
-    ('Burgos', 2025),
-    ('A Coruña', 2025),
-    ('Zamora', 2025),
-    ('Albacete', 2025);
+INSERT INTO equipos (nombre, creacion, origen) VALUES
+    ('Oviedo', 2025, 'ASIR'),
+    ('Almeria', 2025, 'DAM'),
+    ('Leon', 2025, 'DAW'),
+    ('Huelva', 2025, 'AF'),
+    ('Sevilla', 2025, 'ASIR'),
+    ('Santander', 2025, 'DAM'),
+    ('Las Palmas', 2025, 'DAW'),
+    ('Segovia', 2025, 'ASIR'),
+    ('Burgos', 2025, 'DAM'),
+    ('A Coruña', 2025, 'DAW'),
+    ('Zamora', 2025, 'ASIR'),
+    ('Albacete', 2025, 'DAM');
 
 -- Jugadores aleatorios
 INSERT INTO jugadores (nombre, edad, posicion, numero, equipo) VALUES

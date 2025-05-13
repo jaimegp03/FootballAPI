@@ -1,125 +1,50 @@
+<!-- templates/index.html -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Liga de Fútbol</title>
+    <title>Liga de Fútbol - Inicio</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 
-    <header>
-        <h1>⚽ Bienvenido a la API de la Liga de Fútbol</h1>
-    </header>
+<header>
+    <h1>⚽ Bienvenido a la API de la Liga de Fútbol</h1>
+    <p>Explora los datos de equipos, partidos y estadísticas de la liga.</p>
+</header>
 
-    <main>
-        <!-- Equipos -->
-        <section>
-            <h2>👥 Equipos de la Liga</h2>
-            {% if equipos %}
-                <ul>
-                    {% for equipo in equipos %}
-                        <li>{{ equipo[1] }} (Fundado en {{ equipo[2] }})</li>
-                    {% endfor %}
-                </ul>
-            {% else %}
-                <p>No hay equipos disponibles.</p>
-            {% endif %}
-        </section>
+<main class="landing">
+    <div class="tarjetas">
+        <!-- Tarjeta: Equipos -->
+        <a href="{{ url_for('obtener_equipos') }}" class="tarjeta">
+            <h2>👥 Equipos</h2>
+            <p>Ver todos los equipos registrados en la base de datos.</p>
+        </a>
 
-        <!-- Jugadores por equipo -->
-        <section>
-            <h2>🔢 Número de Jugadores por Equipo</h2>
-            {% if jugadores_por_equipo %}
-                <table border="1">
-                    <thead>
-                        <tr>
-                            <th>Equipo</th>
-                            <th>Jugadores</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for fila in jugadores_por_equipo %}
-                            <tr>
-                                <td>{{ fila[0] }}</td>
-                                <td>{{ fila[1] }}</td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            {% else %}
-                <p>No hay datos disponibles.</p>
-            {% endif %}
-        </section>
+        <!-- Tarjeta: Clasificación -->
+        <a href="{{ url_for('obtener_clasificacion') }}" class="tarjeta">
+            <h2>🏆 Clasificación</h2>
+            <p>Consulta la tabla de posiciones actualizada.</p>
+        </a>
 
-        <!-- Clasificación -->
-        <section>
-            <h2>🏆 Clasificación de la Liga</h2>
-            {% if clasificacion %}
-                <table border="1">
-                    <thead>
-                        <tr>
-                            <th>Posición</th>
-                            <th>Nombre</th>
-                            <th>Puntos</th>
-                            <th>Goles a Favor</th>
-                            <th>Goles en Contra</th>
-                            <th>Diferencia</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for fila in clasificacion %}
-                            <tr>
-                                <td>{{ fila[0] }}</td>
-                                <td>{{ fila[1] }}</td>
-                                <td>{{ fila[2] }}</td>
-                                <td>{{ fila[3] }}</td>
-                                <td>{{ fila[4] }}</td>
-                                <td>{{ fila[5] }}</td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            {% else %}
-                <p>No hay datos de clasificación disponibles.</p>
-            {% endif %}
-        </section>
+        <!-- Tarjeta: Horario de partidos -->
+        <a href="{{ url_for('obtener_horario_partidos') }}" class="tarjeta">
+            <h2>📅 Horario de Partidos</h2>
+            <p>Consulta las fechas y horarios de todos los partidos.</p>
+        </a>
 
-        <!-- Goleadores -->
-        <section>
-            <h2>🥅 Equipos Más Goleadores</h2>
-            {% if goleadores %}
-                <table border="1">
-                    <thead>
-                        <tr>
-                            <th>Equipo</th>
-                            <th>Total Goles</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for fila in goleadores %}
-                            <tr>
-                                <td>{{ fila[0] }}</td>
-                                <td>{{ fila[1] }}</td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            {% else %}
-                <p>No hay datos disponibles.</p>
-            {% endif %}
-        </section>
+        <!-- Tarjeta: Equipos Goleadores -->
+        <a href="{{ url_for('obtener_maximos_goleadores') }}" class="tarjeta">
+            <h2>🥅 Máximos Goleadores</h2>
+            <p>Consulta la lista de los jugadores con más goles en la liga.</p>
+        </a>
+    </div>
+</main>
 
-        <!-- Enlaces a otras páginas -->
-        <nav>
-            <h3>🔍 Más información:</h3>
-            <ul>
-                <li><a href="{{ url_for('obtener_equipos') }}">Ver todos los equipos</a></li>
-                <li><a href="{{ url_for('obtener_clasificacion') }}">Ver clasificación completa</a></li>
-                <li><a href="{{ url_for('obtener_goleadores') }}">Equipos más goleadores</a></li>
-                <li><a href="{{ url_for('consulta_partidos_ganados', equipo=2) }}">Partidos ganados por un equipo</a></li>
-            </ul>
-        </nav>
-    </main>
+<footer>
+    <p>Proyecto realizado con Flask & SQLite | JGV &copy; {{ año_actual }}</p>
+</footer>
 
 </body>
 </html>

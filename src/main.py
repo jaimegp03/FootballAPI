@@ -64,10 +64,17 @@ def indice_contenido():
 
 @application.route("/equipos")
 def obtener_equipos():
+    print("Consultando equipos...")
     equipos = conexion.execute_query("SELECT * FROM equipos")
-    return equipos
+    print("Resultados de la consulta:", equipos)
 
+    if equipos is None:
+        equipos = []
 
+    return render_template(
+        "equipos.html",
+        equipos=equipos
+    )
 
 @application.route("/equipos/<id>")
 def obtener_equipo(id):
@@ -78,27 +85,49 @@ def obtener_equipo(id):
 
 
 
-@application.route("/partidosGanadosEquipo/<equipo>")
-def consulta_partidos_ganados(equipo):
-    resultado = conexion.execute_query("""
-        SELECT COUNT(DISTINCT id) 
-        FROM partidos 
-        WHERE (equipo1 = ? AND golesEquipo1 > golesEquipo2) 
-           OR (equipo2 = ? AND golesEquipo2 > golesEquipo1);
-    """, [equipo, equipo])
-    return jsonify({
-        "equipo": equipo,
-        "partidos_ganados": resultado[0][0] if resultado and len(resultado) > 0 else 0
-    })
+@application.route("/horario")
+def obtener_horario_partidos():
+    # Obtener todos los partidos ordenados por fecha
+    partidos = conexion.execute_query("""
+        SELECT p.id, e1.nombre AS equipo1, e2.nombre AS equipo2, 
+               p.fecha, p.golesEquipo1, p.golesEquipo2
+        FROM partidos p
+        JOIN equipos e1 ON p.equipo1 = e1.id
+        JOIN equipos e2 ON p.equipo2 = e2.id
+        ORDER BY p.fecha ASC;
+    """)
+    
+    if partidos is None:
+        partidos = []
+
+    return render_template("horario.html", partidos=partidos)
 
 
 
 @application.route("/clasificacion")
 def obtener_clasificacion():
+    # Obtener clasificación desde la base de datos
+    print("Ejecutando consulta de clasificación...")
     clasificacion = conexion.execute_query(consulta_clasificaciones)
-    return clasificacion
+    print("Datos obtenidos:", clasificacion)
 
-@application.route("/equiposmasgoleadores")
-def obtener_goleadores():
-    goleadores = conexion.execute_query(consulta_equipos_mas_goleadores)
-    return goleadores
+    if clasificacion is None:
+        clasificacion = []
+
+    return render_template("clasificacion.html", clasificacion=clasificacion)
+
+@application.route("/maximos-goleadores")
+def obtener_maximos_goleadores():
+    # Consulta para obtener los máximos goleadores
+    consulta = """
+        SELECT nombre, equipo, goles
+        FROM jugadores
+        ORDER BY goles DESC
+        LIMIT 20;
+    """
+    jugadores_goleadores = conexion.execute_query(consulta)
+
+    if jugadores_goleadores is None:
+        jugadores_goleadores = []
+
+    return render_template("goleadores.html", jugadores=jugadores_goleadores)

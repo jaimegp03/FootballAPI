@@ -1,0 +1,56 @@
+<!-- templates/horario.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>📅 Horario de Partidos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<header>
+    <h1>📅 Horario de Partidos</h1>
+    <p>Consulta las fechas, horarios y resultados de los partidos.</p>
+    <nav>
+        <a href="{{ url_for('indice_contenido') }}">Volver al inicio</a>
+    </nav>
+</header>
+
+<main>
+    {% if partidos %}
+        <table class="tabla-partidos">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Fecha y Hora</th>
+                    <th>Local</th>
+                    <th>Visitante</th>
+                    <th>Resultado</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for partido in partidos %}
+                    <tr>
+                        <td>{{ partido[0] }}</td>
+                        <td class="fecha">{{ partido[3] }}</td>
+                        <td class="equipo local">{{ partido[1] }}</td>
+                        <td class="equipo visitante">{{ partido[2] }}</td>
+                        <td class="resultado">
+                            {% if partido[4] is not none and partido[5] is not none %}
+                                {{ partido[4] }} - {{ partido[5] }}
+                            {% else %}
+                                <em>Aún no jugado</em>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No hay partidos programados aún.</p>
+    {% endif %}
+</main>
+
+</body>
+</html>
