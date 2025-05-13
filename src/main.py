@@ -9,7 +9,7 @@ import os
 application = Flask(__name__, 
                    template_folder=os.path.join(os.getcwd(), 'src', 'templates'),
                    static_folder=os.path.join(os.getcwd(), 'src', 'static'))
-
+CORS(application)
 
 # Configuración del proyecto
 application = Flask(__name__)                           # Creación de la aplicación
@@ -18,6 +18,9 @@ application.config["CORS_HEADERS"] = "Content-Type"     # Configuración de las 
 application.config["JSON_AS_ASCII"] = False             # Los resultados se mostrarán en UTF8 o parecidos, evitando ASCII
 conexion = SQLiteConnection("FootballAPI.db")           # Conexión a la base de datos
 
+# ======================
+# RUTAS WEB (Páginas para los usuarios)
+# ======================
 
 # Páginas
 @application.route("/")
@@ -131,3 +134,59 @@ def obtener_maximos_goleadores():
         jugadores_goleadores = []
 
     return render_template("goleadores.html", jugadores=jugadores_goleadores)
+
+# ======================
+# RUTAS DE LA API (devuelven JSON)
+# ======================
+
+@application.route("/api/equipos")
+def api_equipos():
+    equipos = conexion.execute_query("SELECT * FROM equipos")
+    return jsonify(equipos)
+
+@application.route("/api/jugadores")
+def api_jugadores():
+    jugadores = conexion.execute_query("SELECT * FROM jugadores")
+    return jsonify(jugadores)
+
+@application.route("/api/partidos")
+def api_partidos():
+    partidos = conexion.execute_query("""
+        SELECT p.id, e1.nombre AS equipo1, e2.nombre AS equipo2, 
+               p.fecha, p.golesEquipo1, p.golesEquipo2
+        FROM partidos p
+        JOIN equipos e1 ON p.equipo1 = e1.id
+        JOIN equipos e2 ON p.equipo2 = e2.id
+        ORDER BY p.fecha ASC;
+    """)
+    return jsonify(partidos)
+
+@application.route("/api/clasificacion")
+def api_clasificacion():
+    clasificacion = conexion.execute_query(consulta_clasificaciones)
+    return jsonify(clasificacion)
+
+@application.route("/api/goleadores")
+def api_goleadores():
+    consulta = """
+        SELECT nombre, equipo, goles
+        FROM jugadores
+        ORDER BY goles DESC
+        LIMIT 20;
+    """
+    jugadores = conexion.execute_query(consulta)
+    return jsonify(jugadores)
+
+@application.route("/api/equipos/<id>")
+def api_obtener_equipo(id):
+    equipo = conexion.execute_query("SELECT * FROM equipos WHERE id = ?", [id])
+    if len(equipo) == 0:
+        return jsonify({"message": "Equipo no encontrado", "data": None})
+    return jsonify({"data": equipo[0]})
+
+# ======================
+# Arrancamos el servidor
+# ======================
+
+if __name__ == "__main__":
+    application.run(debug=True)
