@@ -18,9 +18,8 @@
             <div class="tarjetas">
                 {% for equipo in equipos %}
                     <div class="tarjeta">
-                        <h3>{{ equipo[1] }}</h3>
-                        <p><strong>Año de fundación:</strong> {{ equipo[2] }}</p>
-                        <p><strong>Origen:</strong> {{ equipo[3] }}</p>
+                        <h3>{{ equipo["nombre"] }}</h3>
+                        <p><strong>Año de fundación:</strong> {{ equipo["creacion"] }}</p>
                     </div>
                 {% endfor %}
             </div>

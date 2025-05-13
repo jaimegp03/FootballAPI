@@ -25,16 +25,24 @@
                         <th>Goles a Favor</th>
                         <th>Goles en Contra</th>
                         <th>Diferencia de Goles</th>
+                        <th>Derrotas</th>
+                        <th>Empates</th>
+                        <th>Victorias</th>
+                        <th>Partidos jugados</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for fila in clasificacion %}
                         <tr>
-                            <td>{{ fila[0] }}</td>
-                            <td>{{ fila[1] }}</td>
-                            <td>{{ fila[2] }}</td>
-                            <td>{{ fila[3] }}</td>
-                            <td>{{ fila[4] }}</td>
+                            <td>{{ fila["equipo"] }}</td>
+                            <td>{{ fila["puntos"] }}</td>
+                            <td>{{ fila["goles_favor"] }}</td>
+                            <td>{{ fila["goles_contra"] }}</td>
+                            <td>{{ fila["diferencia_goles"] }}</td>
+                            <td>{{ fila["derrotas"] }}</td>
+                            <td>{{ fila["empates"] }}</td>
+                            <td>{{ fila["victorias"] }}</td>
+                            <td>{{ fila["partidos_jugados"] }}</td>
                         </tr>
                     {% endfor %}
                 </tbody>

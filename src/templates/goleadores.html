@@ -28,9 +28,9 @@
             <tbody>
                 {% for jugador in jugadores %}
                     <tr>
-                        <td>{{ jugador[0] }}</td>
-                        <td>{{ jugador[1] }}</td>
-                        <td><strong>{{ jugador[2] }}</strong></td>
+                        <td>{{ jugador["nombre"] }}</td>
+                        <td>{{ jugador["equipo"] }}</td>
+                        <td><strong>{{ jugador["goles"] }}</strong></td>
                     </tr>
                 {% endfor %}
             </tbody>

@@ -32,13 +32,13 @@
             <tbody>
                 {% for partido in partidos %}
                     <tr>
-                        <td>{{ partido[0] }}</td>
-                        <td class="fecha">{{ partido[3] }}</td>
-                        <td class="equipo local">{{ partido[1] }}</td>
-                        <td class="equipo visitante">{{ partido[2] }}</td>
+                        <td>{{ partido["id"] }}</td>
+                        <td class="fecha">{{ partido["fecha"] }}</td>
+                        <td class="equipo local">{{ partido["equipo1"] }}</td>
+                        <td class="equipo visitante">{{ partido["equipo2"] }}</td>
                         <td class="resultado">
-                            {% if partido[4] is not none and partido[5] is not none %}
-                                {{ partido[4] }} - {{ partido[5] }}
+                            {% if partido["golesEquipo1"] is not none and partido["golesEquipo2"] is not none %}
+                                {{ partido["golesEquipo1"] }} - {{ partido["golesEquipo2"] }}
                             {% else %}
                                 <em>Aún no jugado</em>
                             {% endif %}
