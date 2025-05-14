@@ -197,3 +197,79 @@ td.fecha {
     color: #666;
 }
 
+
+/* Sección Insertar Datos */
+.insertar-datos {
+    margin-top: 40px;
+}
+
+.insertar-datos h2 {
+    color: #3498db; /* Azul claro */
+    font-size: 2rem;
+    text-align: center;
+}
+
+.insertar-datos ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.insertar-datos li {
+    background-color: #f1c40f; /* Naranja claro */
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.insertar-datos li:hover {
+    transform: scale(1.05);
+}
+
+.insertar-datos a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Formulario de login */
+.login-form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.login-form label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.login-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #3498db; /* Azul claro */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.login-form button:hover {
+    background-color: #2980b9; /* Azul oscuro */
+}

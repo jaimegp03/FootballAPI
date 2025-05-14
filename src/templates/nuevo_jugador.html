@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Añadir Jugador</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header>
+    <h1>➕ Añadir Nuevo Jugador</h1>
+    <nav><a href="{{ url_for('indice_contenido') }}">Volver al inicio</a></nav>
+</header>
+
+<main>
+    <form method="post">
+        <label for="nombre">Nombre:</label>
+        <input type="text" name="nombre" required>
+
+        <label for="edad">Edad:</label>
+        <input type="number" name="edad" required>
+
+        <label for="posicion">Posición:</label>
+        <select name="posicion" required>
+            <option value="Portero">Portero</option>
+            <option value="Defensa">Defensa</option>
+            <option value="Medio">Medio</option>
+            <option value="Delantero">Delantero</option>
+        </select>
+
+        <label for="numero">Número de camiseta:</label>
+        <input type="number" name="numero" required>
+
+        <label for="equipo">Equipo:</label>
+        <select name="equipo" required>
+            {% for equipo in equipos %}
+                <option value="{{ equipo[0] }}">{{ equipo[1] }}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">Guardar Jugador</button>
+    </form>
+</main>
+
+</body>
+</html>

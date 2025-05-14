@@ -1,7 +1,7 @@
 # Librerías
-from flask import Flask, jsonify, render_template                   # Librería para crear la API, y devolver respuestas en formato JSON
-from flask_cors import CORS                                         # Política de CORS, para permitir acceso ajenos
-from JGVutils import SQLiteConnection                               # Librería para realizar conexiones con una base de datos SQLite
+from flask import Flask, jsonify, render_template, request, redirect, url_for, session          # Librería para crear la API, y devolver respuestas en formato JSON
+from flask_cors import CORS                                                                   # Política de CORS, para permitir acceso ajenos
+from JGVutils import SQLiteConnection                                                         # Librería para realizar conexiones con una base de datos SQLite
 from Consultas import consulta_clasificaciones, consulta_equipos_mas_goleadores
 import os
 
@@ -10,19 +10,15 @@ application = Flask(__name__,
                    template_folder=os.path.join(os.getcwd(), 'src', 'templates'),
                    static_folder=os.path.join(os.getcwd(), 'src', 'static'))
 CORS(application)
+application.secret_key = "tu_clave_secreta_muy_segura"
 
-# Configuración del proyecto
-application = Flask(__name__)                           # Creación de la aplicación
-cors = CORS(application)                                # Definición de la política de CORS
-application.config["CORS_HEADERS"] = "Content-Type"     # Configuración de las CORS
-application.config["JSON_AS_ASCII"] = False             # Los resultados se mostrarán en UTF8 o parecidos, evitando ASCII
-conexion = SQLiteConnection("FootballAPI.db")           # Conexión a la base de datos
+# Conexión a la base de datos
+conexion = SQLiteConnection("FootballAPI.db")
 
 # ======================
 # RUTAS WEB (Páginas para los usuarios)
 # ======================
 
-# Páginas
 @application.route("/")
 def indice_contenido():
     # Obtener todos los equipos
@@ -43,26 +39,23 @@ def indice_contenido():
     if clasificacion is None:
         clasificacion = []
 
-    # Consultar equipos más goleadores
+    # Consultar máximos goleadores
     goleadores = conexion.execute_query(consulta_equipos_mas_goleadores)
     if goleadores is None:
         goleadores = []
 
-    # 💡 Aquí empieza la parte que pediste: Imprimir valores para depurar
-    print("\nDEBUG - Datos obtenidos:\n")
-    print("Equipos:", equipos)
-    print("Jugadores por equipo:", jugadores_por_equipo)
-    print("Clasificación:", clasificacion)
-    print("Goleadores:", goleadores)
-    print("\n" + "-"*50 + "\n")
+    # Determinar si el usuario puede insertar datos (es admin)
+    mostrar_insertar = False
+    if 'user' in session and session['user']['is_admin']:
+        mostrar_insertar = True
 
-    # Renderizar la plantilla pasando todas las variables
     return render_template(
         "index.html",
         equipos=equipos,
         jugadores_por_equipo=jugadores_por_equipo,
         clasificacion=clasificacion,
-        goleadores=goleadores
+        goleadores=goleadores,
+        mostrar_insertar=mostrar_insertar
     )
 
 @application.route("/equipos")
@@ -74,23 +67,17 @@ def obtener_equipos():
     if equipos is None:
         equipos = []
 
-    return render_template(
-        "equipos.html",
-        equipos=equipos
-    )
+    return render_template("equipos.html", equipos=equipos)
 
 @application.route("/equipos/<id>")
 def obtener_equipo(id):
     equipo = conexion.execute_query("SELECT * FROM equipos WHERE id = ?", [id])
     if len(equipo) == 0:
         return jsonify({"message": "Equipo no encontrado", "data": None})
-    return jsonify({"message": "Equipo encontrado", "data":equipo[0]})
-
-
+    return jsonify({"message": "Equipo encontrado", "data": equipo[0]})
 
 @application.route("/horario")
 def obtener_horario_partidos():
-    # Obtener todos los partidos ordenados por fecha
     partidos = conexion.execute_query("""
         SELECT p.id, e1.nombre AS equipo1, e2.nombre AS equipo2, 
                p.fecha, p.golesEquipo1, p.golesEquipo2
@@ -99,41 +86,121 @@ def obtener_horario_partidos():
         JOIN equipos e2 ON p.equipo2 = e2.id
         ORDER BY p.fecha ASC;
     """)
-    
+
     if partidos is None:
         partidos = []
 
     return render_template("horario.html", partidos=partidos)
 
-
-
 @application.route("/clasificacion")
 def obtener_clasificacion():
-    # Obtener clasificación desde la base de datos
-    print("Ejecutando consulta de clasificación...")
     clasificacion = conexion.execute_query(consulta_clasificaciones)
-    print("Datos obtenidos:", clasificacion)
-
     if clasificacion is None:
         clasificacion = []
-
     return render_template("clasificacion.html", clasificacion=clasificacion)
 
 @application.route("/maximos-goleadores")
 def obtener_maximos_goleadores():
-    # Consulta para obtener los máximos goleadores
     consulta = """
         SELECT nombre, equipo, goles
         FROM jugadores
         ORDER BY goles DESC
         LIMIT 20;
     """
-    jugadores_goleadores = conexion.execute_query(consulta)
+    jugadores = conexion.execute_query(consulta)
+    if jugadores is None:
+        jugadores = []
+    return render_template("goleadores.html", jugadores=jugadores)
 
-    if jugadores_goleadores is None:
-        jugadores_goleadores = []
+# ======================
+# RUTAS DE AUTENTICACIÓN Y ADMIN
+# ======================
 
-    return render_template("goleadores.html", jugadores=jugadores_goleadores)
+@application.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        username = request.form["username"]
+        password = request.form["password"]
+        user = conexion.execute_query(
+            "SELECT * FROM usuarios WHERE username = ? AND password = ?",
+            [username, password]
+        )
+        if user and len(user) > 0:
+            session['user'] = {
+                'id': user[0][0],
+                'username': user[0][1],
+                'is_admin': user[0][3]  # Asumiendo que la tabla tiene un campo is_admin
+            }
+            return redirect(url_for("indice_contenido"))
+    return render_template("login.html")
+
+@application.route("/logout")
+def logout():
+    session.pop('user', None)
+    return redirect(url_for("login"))
+
+def is_admin():
+    return session.get('user') and session['user'].get('is_admin') == 1
+
+# ======================
+# RUTAS PARA INSERTAR DATOS
+# ======================
+
+@application.route("/equipos/nuevo", methods=["GET", "POST"])
+def nuevo_equipo():
+    if not is_admin():
+        return "<p>⚠️ Acceso denegado. Necesitas iniciar sesión como administrador.</p><a href='/login'>Volver a iniciar sesión</a>"
+    
+    if request.method == "POST":
+        nombre = request.form["nombre"]
+        creacion = request.form["creacion"]
+        conexion.execute_query(
+            "INSERT INTO equipos (nombre, creacion) VALUES (?, ?)",
+            [nombre, creacion]
+        )
+        return redirect(url_for("obtener_equipos"))
+    
+    return render_template("nuevo_equipo.html")
+
+@application.route("/jugadores/nuevo", methods=["GET", "POST"])
+def nuevo_jugador():
+    if not is_admin():
+        return "<p>⚠️ Acceso denegado. Necesitas iniciar sesión como administrador.</p><a href='/login'>Volver a iniciar sesión</a>"
+    
+    if request.method == "POST":
+        nombre = request.form["nombre"]
+        edad = request.form["edad"]
+        posicion = request.form["posicion"]
+        numero = request.form["numero"]
+        equipo = request.form["equipo"]
+        conexion.execute_query(
+            "INSERT INTO jugadores (nombre, edad, posicion, numero, equipo) VALUES (?, ?, ?, ?, ?)",
+            [nombre, edad, posicion, numero, equipo]
+        )
+        return redirect(url_for("obtener_equipos"))
+    
+    equipos = conexion.execute_query("SELECT id, nombre FROM equipos")
+    return render_template("nuevo_jugador.html", equipos=equipos)
+
+@application.route("/partidos/nuevo", methods=["GET", "POST"])
+def nuevo_partido():
+    if not is_admin():
+        return "<p>⚠️ Acceso denegado. Necesitas iniciar sesión como administrador.</p><a href='/login'>Volver a iniciar sesión</a>"
+    
+    if request.method == "POST":
+        equipo1 = request.form["equipo1"]
+        equipo2 = request.form["equipo2"]
+        fecha = request.form["fecha"]
+        goles1 = request.form["golesEquipo1"]
+        goles2 = request.form["golesEquipo2"]
+        conexion.execute_query(
+            "INSERT INTO partidos (equipo1, equipo2, fecha, golesEquipo1, golesEquipo2) VALUES (?, ?, ?, ?, ?)",
+            [equipo1, equipo2, fecha, goles1, goles2]
+        )
+        return redirect(url_for("obtener_horario_partidos"))
+    
+    equipos = conexion.execute_query("SELECT id, nombre FROM equipos")
+    return render_template("nuevo_partido.html", equipos=equipos)
 
 # ======================
 # RUTAS DE LA API (devuelven JSON)

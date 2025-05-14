@@ -2,3 +2,6 @@ flask
 flask_cors
 requests
 JGVutils
+openai
+flask-wtf
+sqlite3

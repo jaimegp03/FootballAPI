@@ -15,6 +15,7 @@
 </header>
 
 <main class="landing">
+    <!-- Tarjetas principales -->
     <div class="tarjetas">
         <!-- Tarjeta: Equipos -->
         <a href="{{ url_for('obtener_equipos') }}" class="tarjeta">
@@ -34,16 +35,35 @@
             <p>Consulta las fechas y horarios de todos los partidos.</p>
         </a>
 
-        <!-- Tarjeta: Equipos Goleadores -->
+        <!-- Tarjeta: Máximos Goleadores -->
         <a href="{{ url_for('obtener_maximos_goleadores') }}" class="tarjeta">
             <h2>🥅 Máximos Goleadores</h2>
             <p>Consulta la lista de los jugadores con más goles en la liga.</p>
         </a>
     </div>
+    <!-- Sección de Login -->
+    <div class="tarjetas">
+    <a href="{{ url_for('login') }}" class="tarjeta login-link">
+        <h2>🔐 Iniciar Sesión</h2>
+        <p>Accede como administrador para insertar nuevos datos.</p>
+    </a>
+    </div>
+    <!-- Sección Insertar Datos (solo visible para admins) -->
+    {% if mostrar_insertar %}
+        <section class="insertar-datos">
+            <h2>➕ Insertar Datos</h2>
+            <ul>
+                <li><a href="{{ url_for('nuevo_equipo') }}">Añadir un nuevo equipo</a></li>
+                <li><a href="{{ url_for('nuevo_jugador') }}">Añadir un nuevo jugador</a></li>
+                <li><a href="{{ url_for('nuevo_partido') }}">Añadir un nuevo partido</a></li>
+            </ul>
+        </section>
+    {% endif %}
+
 </main>
 
 <footer>
-    <p>Proyecto realizado con Flask & SQLite | JGV &copy; {{ año_actual }}</p>
+    <p>Proyecto realizado con Flask & SQLite</p>
 </footer>
 
 </body>
