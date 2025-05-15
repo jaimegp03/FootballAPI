@@ -397,6 +397,21 @@ ul li {
     background-color: #95a5a6;
 }
 
+.volver-inicio {
+    margin-top: 15px;
+}
+.volver-inicio a {
+    color: #3498db;
+    text-decoration: none;
+    font-size: 0.9rem;
+    display: block;
+    text-align: center;
+}
+
+.volver-inicio a:hover {
+    text-decoration: underline;
+}
+
 /* Estadísticas - Datos Informativos */
 .estadisticas {
     display: flex;
