@@ -9,12 +9,25 @@
 </head>
 <body>
 
-<header>
+<header class="hero-section">
     <h1>⚽ Bienvenido a la API de la Liga de Fútbol</h1>
     <p>Explora los datos de equipos, partidos y estadísticas de la liga.</p>
 </header>
 
 <main class="landing">
+
+    <!-- Estadísticas generales -->
+    <section class="estadisticas">
+        <div class="dato-informativo">
+            <i>👥</i>
+            <p>{{ total_equipos }} 12 equipos</p>
+        </div>
+        <div class="dato-informativo">
+            <i>👤</i>
+            <p>{{ total_jugadores }} 176 jugadores</p>
+        </div>
+    </section>
+
     <!-- Tarjetas principales -->
     <div class="tarjetas">
         <!-- Tarjeta: Equipos -->
@@ -41,14 +54,22 @@
             <p>Consulta la lista de los jugadores con más goles en la liga.</p>
         </a>
     </div>
-    <!-- Sección de Login -->
-    <div class="tarjetas">
-    <a href="{{ url_for('login') }}" class="tarjeta login-link">
-        <h2>🔐 Iniciar Sesión</h2>
-        <p>Accede como administrador para insertar nuevos datos.</p>
-    </a>
-    </div>
-    <!-- Sección Insertar Datos (solo visible para admins) -->
+
+    <!-- Máximos goleadores -->
+    {% if maximos_goleadores %}
+        <section class="seccion-goleadores">
+            <h2>🥅 Jugadores Destacados</h2>
+            <ul>
+                {% for goleador in maximos_goleadores[:5] %}
+                    <li>
+                        {{ goleador[0] }} - {{ goleador[1] }} ➤ <strong>{{ goleador[2] }}</strong> goles
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+    {% endif %}
+
+    <!-- Insertar Datos -->
     {% if mostrar_insertar %}
         <section class="insertar-datos">
             <h2>➕ Insertar Datos</h2>
@@ -59,6 +80,14 @@
             </ul>
         </section>
     {% endif %}
+
+        <!-- Enlace de Login -->
+        <section class="login-link">
+                <h2>🔐 Acceso Administradores</h2>
+            <p>
+                <a href="{{ url_for('login') }}" class="btn-login">Iniciar Sesión</a>
+            </p>
+        </section>
 
 </main>
 

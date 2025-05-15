@@ -22,6 +22,7 @@ h1, h2, h3 {
     color: #2c3e50;
 }
 
+/* Encabezado principal */
 header {
     text-align: center;
     padding: 40px 20px 20px;
@@ -42,6 +43,7 @@ header p {
     opacity: 0.9;
 }
 
+/* Pie de página */
 footer {
     margin-top: 60px;
     text-align: center;
@@ -142,16 +144,7 @@ tr:hover {
     color: #2c3e50;
 }
 
-/* Formatos comunes */
-ul {
-    list-style: none;
-    padding-left: 0;
-}
-
-ul li {
-    padding: 5px 0;
-}
-
+/* Navegación */
 nav {
     margin-top: 20px;
 }
@@ -179,34 +172,33 @@ nav a:hover {
     background-color: #2980b9;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .tarjetas {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .tarjeta-equipo {
-        width: 100%;
-    }
-}
-
+/* Fechas en tablas */
 td.fecha {
     white-space: nowrap;
     font-size: 0.9rem;
     color: #666;
 }
 
+/* Formatos comunes */
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+ul li {
+    padding: 5px 0;
+}
 
 /* Sección Insertar Datos */
 .insertar-datos {
     margin-top: 40px;
+    text-align: center;
 }
 
 .insertar-datos h2 {
     color: #3498db; /* Azul claro */
     font-size: 2rem;
-    text-align: center;
+    margin-bottom: 20px;
 }
 
 .insertar-datos ul {
@@ -233,6 +225,9 @@ td.fecha {
     color: white;
     text-decoration: none;
     font-weight: bold;
+    display: block;
+    width: 100%;
+    height: 100%;
 }
 
 /* Formulario de login */
@@ -240,7 +235,7 @@ td.fecha {
     max-width: 400px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #ffffff;
+    background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
@@ -263,13 +258,169 @@ td.fecha {
 .login-form button {
     width: 100%;
     padding: 10px;
-    background-color: #3498db; /* Azul claro */
+    background-color: #3498db;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 1rem;
 }
 
 .login-form button:hover {
-    background-color: #2980b9; /* Azul oscuro */
+    background-color: #2980b9;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .tarjetas {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .tarjeta-equipo {
+        width: 100%;
+    }
+}
+
+/* ======================
+   Estilos para login
+   ====================== */
+
+.login-body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh; /* Altura completa de la pantalla */
+    display: flex;
+    justify-content: center; /* Centrado horizontal */
+    align-items: center;     /* Centrado vertical */
+    background-color: #f4f4f4;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.login-container {
+    max-width: 400px;
+    width: 100%;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.login-container h2 {
+    color: #2980b9;
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+.login-container label {
+    display: block;
+    text-align: left;
+    margin-top: 10px;
+    font-weight: bold;
+    color: #333;
+}
+
+.login-container input[type="text"],
+.login-container input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.login-container input:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+.login-container button {
+    width: 100%;
+    padding: 12px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-container button:hover {
+    background-color: #2980b9;
+}
+
+.mensaje-error {
+    background-color: #e74c3c;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+/* Botón de login */
+.login-link {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.btn-login {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: #2980b9; /* Gris profesional */
+    color: white;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn-login:hover {
+    background-color: #95a5a6;
+}
+
+/* Estadísticas - Datos Informativos */
+.estadisticas {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin: 30px 0;
+    text-align: center;
+}
+
+.dato-informativo {
+    background-color: #ecf0f1;
+    padding: 15px 25px;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: #34495e;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.3s ease;
+}
+
+.dato-informativo i {
+    font-size: 1.2rem;
+    margin-right: 5px;
+}
+
+.dato-informativo:hover {
+    background-color: #d0dce6;
 }

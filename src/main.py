@@ -1,19 +1,19 @@
 # Librerías
-from flask import Flask, jsonify, render_template, request, redirect, url_for, session          # Librería para crear la API, y devolver respuestas en formato JSON
-from flask_cors import CORS                                                                   # Política de CORS, para permitir acceso ajenos
-from JGVutils import SQLiteConnection                                                         # Librería para realizar conexiones con una base de datos SQLite
+from flask import Flask, jsonify, render_template, request, redirect, url_for, session
+from flask_cors import CORS
+from JGVutils import SQLiteConnection
 from Consultas import consulta_clasificaciones, consulta_equipos_mas_goleadores
 import os
 
 # Configurar Flask para usar las carpetas 'templates' y 'static'
-application = Flask(__name__, 
-                   template_folder=os.path.join(os.getcwd(), 'src', 'templates'),
-                   static_folder=os.path.join(os.getcwd(), 'src', 'static'))
+application = Flask(__name__,
+                    template_folder=os.path.join(os.getcwd(), 'src', 'templates'),
+                    static_folder=os.path.join(os.getcwd(), 'src', 'static'))
 CORS(application)
 application.secret_key = "tu_clave_secreta_muy_segura"
 
 # Conexión a la base de datos
-conexion = SQLiteConnection("FootballAPI.db")
+conexion = SQLiteConnection("database/FootballAPI.db")
 
 # ======================
 # RUTAS WEB (Páginas para los usuarios)
@@ -21,12 +21,13 @@ conexion = SQLiteConnection("FootballAPI.db")
 
 @application.route("/")
 def indice_contenido():
+
     # Obtener todos los equipos
     equipos = conexion.execute_query("SELECT * FROM equipos")
     if equipos is None:
         equipos = []
 
-    # Consultar número de jugadores por equipo
+    # Número de jugadores por equipo
     jugadores_por_equipo = conexion.execute_query("""
         SELECT equipo, COUNT(DISTINCT id) AS 'Numero de jugadores' 
         FROM jugadores GROUP BY equipo;
@@ -34,21 +35,22 @@ def indice_contenido():
     if jugadores_por_equipo is None:
         jugadores_por_equipo = []
 
-    # Consultar clasificación
+    # Clasificación
     clasificacion = conexion.execute_query(consulta_clasificaciones)
     if clasificacion is None:
         clasificacion = []
 
-    # Consultar máximos goleadores
+    # Equipos más goleadores
     goleadores = conexion.execute_query(consulta_equipos_mas_goleadores)
     if goleadores is None:
         goleadores = []
 
-    # Determinar si el usuario puede insertar datos (es admin)
+    # Verificar si es administrador
     mostrar_insertar = False
-    if 'user' in session and session['user']['is_admin']:
+    if 'user' in session and session['user'].get('is_admin'):
         mostrar_insertar = True
 
+    
     return render_template(
         "index.html",
         equipos=equipos,
@@ -60,9 +62,9 @@ def indice_contenido():
 
 @application.route("/equipos")
 def obtener_equipos():
-    print("Consultando equipos...")
+    print("[DEBUG] Ruta /equipos accedida")
     equipos = conexion.execute_query("SELECT * FROM equipos")
-    print("Resultados de la consulta:", equipos)
+    print("Datos obtenidos:", equipos)
 
     if equipos is None:
         equipos = []
@@ -118,21 +120,28 @@ def obtener_maximos_goleadores():
 
 @application.route("/login", methods=["GET", "POST"])
 def login():
+    mensaje = None
+
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
+
         user = conexion.execute_query(
             "SELECT * FROM usuarios WHERE username = ? AND password = ?",
             [username, password]
         )
+
         if user and len(user) > 0:
             session['user'] = {
                 'id': user[0][0],
                 'username': user[0][1],
-                'is_admin': user[0][3]  # Asumiendo que la tabla tiene un campo is_admin
+                'is_admin': user[0][3]
             }
             return redirect(url_for("indice_contenido"))
-    return render_template("login.html")
+        else:
+            mensaje = "Usuario o contraseña incorrectos."
+
+    return render_template("login.html", mensaje=mensaje)
 
 @application.route("/logout")
 def logout():

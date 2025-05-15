@@ -1,3 +1,4 @@
+<!-- templates/nuevo_partido.html -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -8,8 +9,8 @@
 <body>
 
 <header>
-    <h1>➕ Añadir Nuevo Partido</h1>
-    <nav><a href="{{ url_for('indice_contenido') }}">Volver al inicio</a></nav>
+    <h1>📅 Añadir Nuevo Partido</h1>
+    <nav><a href="{{ url_for('indice_contenido') }}">Inicio</a> | <a href="{{ url_for('logout') }}">Cerrar sesión</a></nav>
 </header>
 
 <main>
@@ -32,10 +33,10 @@
         <input type="datetime-local" name="fecha" required>
 
         <label for="golesEquipo1">Goles del local:</label>
-        <input type="number" name="golesEquipo1" value="0">
+        <input type="number" name="golesEquipo1" value="0" required>
 
         <label for="golesEquipo2">Goles del visitante:</label>
-        <input type="number" name="golesEquipo2" value="0">
+        <input type="number" name="golesEquipo2" value="0" required>
 
         <button type="submit">Guardar Partido</button>
     </form>

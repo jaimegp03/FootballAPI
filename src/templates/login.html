@@ -5,22 +5,25 @@
     <meta charset="UTF-8">
     <title>Iniciar Sesión</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
 </head>
-<body>
+<body class="login-body">
+    <div class="login-container">
+        <h2>🔐 Iniciar Sesión</h2>
 
-<div class="login-form">
-    <h1>🔐 Iniciar Sesión</h1>
+        {% if mensaje %}
+            <div class="mensaje-error">{{ mensaje }}</div>
+        {% endif %}
 
-    <form method="POST">
-        <label for="username">Usuario:</label>
-        <input type="text" name="username" required>
+        <form method="POST">
+            <label for="username">Usuario:</label>
+            <input type="text" name="username" id="username" required autofocus>
 
-        <label for="password">Contraseña:</label>
-        <input type="password" name="password" required>
+            <label for="password">Contraseña:</label>
+            <input type="password" name="password" id="password" required>
 
-        <button type="submit">Iniciar sesión</button>
-    </form>
-</div>
-
+            <button type="submit">Iniciar sesión</button>
+        </form>
+    </div>
 </body>
 </html>

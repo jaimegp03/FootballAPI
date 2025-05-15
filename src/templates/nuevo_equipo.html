@@ -10,14 +10,10 @@
 
 <header>
     <h1>➕ Añadir Nuevo Equipo</h1>
-    <nav>
-        <a href="{{ url_for('indice_contenido') }}">Inicio</a> | 
-        <a href="{{ url_for('logout') }}">Cerrar sesión</a>
-    </nav>
+    <nav><a href="{{ url_for('indice_contenido') }}">Inicio</a> | <a href="{{ url_for('logout') }}">Cerrar sesión</a></nav>
 </header>
 
 <main>
-    {% block contenido %}
     <form method="post">
         <label for="nombre">Nombre del equipo:</label>
         <input type="text" name="nombre" required>
@@ -27,7 +23,6 @@
 
         <button type="submit">Guardar Equipo</button>
     </form>
-    {% endblock %}
 </main>
 
 </body>
