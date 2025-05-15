@@ -1,13 +1,13 @@
 -- Tabla de usuarios
 CREATE TABLE usuarios (
-    id INTEGER PRIMARY KEY,
-    username TEXT UNIQUE,
+    username TEXT PRIMARY KEY,
+    name TEXT,
     password TEXT,
     is_admin BOOLEAN DEFAULT 0
 );
 
 -- Inserta un usuario admin
-INSERT OR IGNORE INTO usuarios (username, password, is_admin) VALUES ('admin', '123456', 1);
+INSERT INTO usuarios (username, name, password, is_admin) VALUES ('admin', 'Jaime', '123', 1);
 
 
 

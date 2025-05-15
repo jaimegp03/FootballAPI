@@ -36,7 +36,7 @@
         <label for="equipo">Equipo:</label>
         <select name="equipo" required>
             {% for equipo in equipos %}
-                <option value="{{ equipo[0] }}">{{ equipo[1] }}</option>
+                <option value="{{ equipo['id'] }}">{{ equipo["nombre"] }}</option>
             {% endfor %}
         </select>
 

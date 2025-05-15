@@ -71,16 +71,33 @@
 
     <!-- Insertar Datos -->
     {% if mostrar_insertar %}
+        <hr style="margin-top: 50px;margin-inline: 100px;">
+
         <section class="insertar-datos">
-            <h2>➕ Insertar Datos</h2>
+            <h2>&#10133; Insertar Datos</h2>
             <ul>
                 <li><a href="{{ url_for('nuevo_equipo') }}">Añadir un nuevo equipo</a></li>
                 <li><a href="{{ url_for('nuevo_jugador') }}">Añadir un nuevo jugador</a></li>
                 <li><a href="{{ url_for('nuevo_partido') }}">Añadir un nuevo partido</a></li>
             </ul>
         </section>
-    {% endif %}
 
+        <style>
+
+            .centrado {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-top: 30px;
+            }
+
+        </style>
+        <section class="centrado">
+            <p>
+                <a href="#" class="btn-login">Cerrar sesión</a>
+            </p>
+        </section>
+    {% else %}
         <!-- Enlace de Login -->
         <section class="login-link">
                 <h2>🔐 Acceso Administradores</h2>
@@ -88,6 +105,9 @@
                 <a href="{{ url_for('login') }}" class="btn-login">Iniciar Sesión</a>
             </p>
         </section>
+    {% endif %}
+
+        
 
 </main>
 
