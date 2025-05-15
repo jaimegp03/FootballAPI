@@ -1,5 +1,5 @@
 -- Tabla de usuarios
-CREATE TABLE IF NOT EXISTS usuarios (
+CREATE TABLE usuarios (
     id INTEGER PRIMARY KEY,
     username TEXT UNIQUE,
     password TEXT,
@@ -7,8 +7,8 @@ CREATE TABLE IF NOT EXISTS usuarios (
 );
 
 -- Inserta un usuario admin
-INSERT OR IGNORE INTO usuarios (username, password, is_admin)
-VALUES ('admin', '123456', 1);
+INSERT OR IGNORE INTO usuarios (username, password, is_admin) VALUES ('admin', '123456', 1);
+
 
 
 CREATE TABLE equipos (

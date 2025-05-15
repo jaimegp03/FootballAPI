@@ -7,8 +7,9 @@ import os
 
 # Configurar Flask para usar las carpetas 'templates' y 'static'
 application = Flask(__name__,
-                    template_folder=os.path.join(os.getcwd(), 'src', 'templates'),
-                    static_folder=os.path.join(os.getcwd(), 'src', 'static'))
+                    template_folder='templates',
+                    static_folder='static')
+
 CORS(application)
 application.secret_key = "tu_clave_secreta_muy_segura"
 
@@ -141,7 +142,7 @@ def login():
         else:
             mensaje = "Usuario o contraseña incorrectos."
 
-    return render_template("login.html", mensaje=mensaje)
+    return render_template("/login.html", mensaje=mensaje)
 
 @application.route("/logout")
 def logout():
