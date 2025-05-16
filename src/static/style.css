@@ -88,34 +88,46 @@ footer {
 }
 
 /* Tablas generales */
-table {
+/* Tabla bonita */
+.tabla-datos {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
     background-color: white;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     overflow: hidden;
 }
 
-th, td {
+.tabla-datos th, .tabla-datos td {
     padding: 12px 15px;
     text-align: center;
     border-bottom: 1px solid #ddd;
 }
 
-thead th {
-    background-color: #3498db;
+.tabla-datos thead th {
+    background-color: #e67e22;
     color: white;
+    cursor: pointer;
+    position: relative;
     font-weight: bold;
 }
 
-tr:nth-child(even) {
-    background-color: #ecf0f1;
+.tabla-datos thead th::after {
+    content: " 🔽";
+    font-size: 0.8rem;
+    opacity: 0.5;
+    transition: transform 0.2s ease;
 }
 
-tr:hover {
-    background-color: #f9f9f9;
+.tabla-datos thead th.asc::after {
+    content: " 🔼";
+    opacity: 0.9;
+}
+
+.tabla-datos thead th.desc::after {
+    content: " 🔽";
+    opacity: 0.9;
 }
 
 /* Tarjetas genéricas */

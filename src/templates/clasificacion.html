@@ -5,52 +5,47 @@
     <meta charset="UTF-8">
     <title>🏆 Clasificación de la Liga</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='js/sort_table.js') }}"></script>
 </head>
 <body>
 
-    <header>
-        <h1>🏆 Clasificación de la Liga</h1>
-        <nav>
-            <a href="{{ url_for('indice_contenido') }}">Volver al inicio</a>
-        </nav>
-    </header>
+<header>
+    <h1>🏆 Clasificación de la Liga</h1>
+    <nav><a href="{{ url_for('indice_contenido') }}">Volver al inicio</a></nav>
+</header>
 
-    <main>
-        {% if clasificacion %}
-            <table border="1">
-                <thead>
-                    <tr>
-                        <th>Equipo</th>
-                        <th>Puntos</th>
-                        <th>Goles a Favor</th>
-                        <th>Goles en Contra</th>
-                        <th>Diferencia de Goles</th>
-                        <th>Derrotas</th>
-                        <th>Empates</th>
-                        <th>Victorias</th>
-                        <th>Partidos jugados</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for fila in clasificacion %}
-                        <tr>
-                            <td>{{ fila["equipo"] }}</td>
-                            <td>{{ fila["puntos"] }}</td>
-                            <td>{{ fila["goles_favor"] }}</td>
-                            <td>{{ fila["goles_contra"] }}</td>
-                            <td>{{ fila["diferencia_goles"] }}</td>
-                            <td>{{ fila["derrotas"] }}</td>
-                            <td>{{ fila["empates"] }}</td>
-                            <td>{{ fila["victorias"] }}</td>
-                            <td>{{ fila["partidos_jugados"] }}</td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        {% else %}
-            <p>No hay datos disponibles en la clasificación.</p>
-        {% endif %}
-    </main>
+<main>
+    <table id="tabla-clasificacion" class="tabla-datos">
+        <thead>
+            <tr>
+                <th data-column="equipo">Equipo</th>
+                <th data-column="puntos">Puntos</th>
+                <th data-column="goles_favor">Goles a Favor</th>
+                <th data-column="goles_contra">Goles en Contra</th>
+                <th data-column="diferencia_goles">Diferencia de Goles</th>
+                <th data-column="derrotas">Derrotas</th>
+                <th data-column="empates">Empates</th>
+                <th data-column="victorias">Victorias</th>
+                <th data-column="partidos_jugados">Partidos jugados</th>
+            </tr>
+        </thead>
+        <tbody id="tabla-body">
+            {% for fila in clasificacion %}
+                <tr>
+                    <td>{{ fila["equipo"] }}</td>
+                    <td>{{ fila["puntos"] }}</td>
+                    <td>{{ fila["goles_favor"] }}</td>
+                    <td>{{ fila["goles_contra"] }}</td>
+                    <td>{{ fila["diferencia_goles"] }}</td>
+                    <td>{{ fila["derrotas"] }}</td>
+                    <td>{{ fila["empates"] }}</td>
+                    <td>{{ fila["victorias"] }}</td>
+                    <td>{{ fila["partidos_jugados"] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</main>
 
 </body>
 </html>
