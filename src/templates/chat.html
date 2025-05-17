@@ -1,0 +1,72 @@
+<!-- templates/chat.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>🤖 Chat con la IA</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header class="hero-section">
+    <h1>🤖 Chat con tu Asistente de Fútbol</h1>
+    <nav>
+        <a href="{{ url_for('indice_contenido') }}">Inicio</a>
+        {% if session.get('user') %}
+            | <a href="{{ url_for('logout') }}">Cerrar sesión</a>
+        {% else %}
+            | <a href="{{ url_for('login') }}">Iniciar sesión</a>
+        {% endif %}
+    </nav>
+</header>
+
+<main class="chat-container">
+    <div class="titulo-chat">
+        <p><strong>⚽ Bienvenido al asistente de fútbol</strong><br>Haz preguntas sobre equipos, partidos o jugadores.</p>
+    </div>
+
+    <div class="chat-mensajes" id="chat-mensajes">
+        <div class="mensaje ia">👋 ¡Hola! Soy tu asistente de fútbol. Pregúntame lo que necesites.</div>
+    </div>
+
+    <form id="formulario-chat" class="chat-formulario">
+        <input type="text" id="pregunta" name="pregunta" placeholder="Ejemplo: ¿Quién tiene más goles?" required>
+        <button type="submit">Enviar</button>
+    </form>
+</main>
+
+<script>
+    const form = document.getElementById("formulario-chat");
+    const input = document.getElementById("pregunta");
+    const chatBox = document.getElementById("chat-mensajes");
+
+    function agregarMensaje(texto, tipo) {
+        const mensajeDiv = document.createElement("div");
+        mensajeDiv.classList.add("mensaje", tipo);
+        mensajeDiv.innerText = texto;
+        chatBox.appendChild(mensajeDiv);
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const pregunta = input.value.trim();
+        if (!pregunta) return;
+
+        agregarMensaje(pregunta, "usuario");
+        input.value = "";
+        input.focus();
+
+        try {
+            const res = await fetch("/chat/responder?pregunta=" + encodeURIComponent(pregunta));
+            const data = await res.json();
+            agregarMensaje(data.respuesta, "ia");
+        } catch (err) {
+            console.error(err);
+            agregarMensaje("Hubo un problema al obtener la respuesta.", "ia");
+        }
+    });
+</script>
+
+</body>
+</html>

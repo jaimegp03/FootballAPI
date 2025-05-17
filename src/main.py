@@ -4,6 +4,9 @@ from flask_cors import CORS
 from JGVutils import SQLiteConnection
 from Consultas import consulta_clasificaciones, consulta_equipos_mas_goleadores
 import os
+import openai
+
+openai.api_key = "tu_clave_openai_aquí"
 
 # Configurar Flask para usar las carpetas 'templates' y 'static'
 application = Flask(__name__,
@@ -58,7 +61,7 @@ def indice_contenido():
         jugadores_por_equipo=jugadores_por_equipo,
         clasificacion=clasificacion,
         goleadores=goleadores,
-        mostrar_insertar=mostrar_insertar
+        mostrar_insertar=is_admin()
     )
 
 
@@ -129,6 +132,66 @@ def obtener_maximos_goleadores():
     if jugadores is None:
         jugadores = []
     return render_template("goleadores.html", jugadores=jugadores)
+
+@application.route("/chat")
+def chat():
+    return render_template("chat.html")
+
+@application.route("/chat/responder")
+def responder_pregunta():
+    from openai import OpenAI
+
+    client = OpenAI(api_key=openai.api_key)
+
+    pregunta = request.args.get("pregunta")
+
+    prompt = f"""
+    Eres un asistente especializado en fútbol. Debes traducir preguntas tipo natural a consultas SQL válidas para SQLite.
+
+    Tablas disponibles:
+    - equipos (id, nombre, creacion)
+    - jugadores (id, nombre, edad, posicion, numero, equipo, goles)
+    - partidos (id, equipo1, equipo2, fecha, golesEquipo1, golesEquipo2)
+
+    Reglas:
+    - Solo devuelve la consulta SQL o "No entiendo esa pregunta"
+    - Evita explicaciones extra
+    - Usa joins cuando haga falta
+    - Usa los campos exactos de la tabla
+
+    Pregunta: {pregunta}
+
+    Respuesta:
+    """
+
+    try:
+        completion = client.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": "Eres un experto en SQL y fútbol"},
+                {"role": "user", "content": prompt}
+            ]
+        )
+
+        sql_query = completion.choices[0].message.content.strip()
+        print("Consulta generada:", sql_query)
+
+        if sql_query.startswith("SELECT") or sql_query.startswith("select"):
+            resultado = conexion.execute_query(sql_query)
+            print("Resultado:", resultado)
+
+            if resultado and len(resultado) > 0:
+                respuesta = "\n".join(str(fila) for fila in resultado)
+                return jsonify({"respuesta": respuesta})
+            else:
+                return jsonify({"respuesta": "No se encontraron resultados."})
+        else:
+            return jsonify({"respuesta": sql_query})
+
+    except Exception as e:
+        print("Error al procesar la pregunta:", e)
+        return jsonify({"respuesta": "Hubo un problema al obtener la respuesta."})
+    
 
 # ======================
 # RUTAS DE AUTENTICACIÓN Y ADMIN
@@ -239,6 +302,73 @@ def nuevo_partido():
     
     equipos = conexion.execute_query("SELECT id, nombre FROM equipos")
     return render_template("nuevo_partido.html", equipos=equipos)
+
+# ======================
+# RUTAS PARA ELIMINAR DATOS
+# ======================
+
+@application.route("/equipos/eliminar", methods=["GET"])
+def eliminar_equipo():
+    if not is_admin():
+        return "<p>⚠️ Acceso denegado. Debes iniciar sesión como administrador.</p><a href='/login'>Volver a iniciar sesión</a>"
+    
+    # Obtener todos los equipos
+    equipos = conexion.execute_query("SELECT id, nombre FROM equipos")
+    return render_template("eliminar_equipo.html", equipos=equipos)
+
+
+@application.route("/jugadores/eliminar", methods=["GET"])
+def eliminar_jugador():
+    if not is_admin():
+        return "<p>⚠️ Acceso denegado. Debes iniciar sesión como administrador.</p><a href='/login'>Volver a iniciar sesión</a>"
+    
+    # Obtener todos los jugadores
+    jugadores = conexion.execute_query("SELECT id, nombre, equipo FROM jugadores")
+    return render_template("eliminar_jugador.html", jugadores=jugadores)
+
+
+@application.route("/partidos/eliminar", methods=["GET"])
+def eliminar_partido():
+    if not is_admin():
+        return "<p>⚠️ Acceso denegado. Debes iniciar sesión como administrador.</p><a href='/login'>Volver a iniciar sesión</a>"
+    
+    # Obtener todos los partidos (con nombres de equipos)
+    partidos = conexion.execute_query("""
+        SELECT p.id, e1.nombre AS local, e2.nombre AS visitante, p.fecha 
+        FROM partidos p
+        JOIN equipos e1 ON p.equipo1 = e1.id
+        JOIN equipos e2 ON p.equipo2 = e2.id;
+    """)
+    return render_template("eliminar_partido.html", partidos=partidos)
+
+@application.route("/equipos/eliminar/<int:id>", methods=["POST"])
+def confirmar_eliminar_equipo(id):
+    if not is_admin():
+        return "<p>⚠️ Acceso denegado</p><a href='/login'>Iniciar sesión</a>"
+    
+    # Elimina el equipo por ID
+    conexion.execute_query("DELETE FROM equipos WHERE id = ?", [id])
+    return redirect(url_for("eliminar_equipo"))
+
+
+@application.route("/jugadores/eliminar/<int:id>", methods=["POST"])
+def confirmar_eliminar_jugador(id):
+    if not is_admin():
+        return "<p>⚠️ Acceso denegado</p><a href='/login'>Iniciar sesión</a>"
+    
+    # Elimina el jugador por ID
+    conexion.execute_query("DELETE FROM jugadores WHERE id = ?", [id])
+    return redirect(url_for("eliminar_jugador"))
+
+
+@application.route("/partidos/eliminar/<int:id>", methods=["POST"])
+def confirmar_eliminar_partido(id):
+    if not is_admin():
+        return "<p>⚠️ Acceso denegado</p><a href='/login'>Iniciar sesión</a>"
+    
+    # Elimina el partido por ID
+    conexion.execute_query("DELETE FROM partidos WHERE id = ?", [id])
+    return redirect(url_for("eliminar_partido"))
 
 # ======================
 # RUTAS DE LA API (devuelven JSON)

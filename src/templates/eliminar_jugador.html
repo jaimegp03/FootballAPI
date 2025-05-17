@@ -1,0 +1,48 @@
+<!-- templates/eliminar_jugador.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>🗑️ Eliminar Jugador</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header>
+    <h1>🗑️ Eliminar Jugador</h1>
+    <nav><a href="{{ url_for('indice_contenido') }}">Inicio</a> | <a href="{{ url_for('logout') }}">Cerrar sesión</a></nav>
+</header>
+
+<main>
+    {% if jugadores %}
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Equipo</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for jugador in jugadores %}
+                    <tr>
+                        <td>{{ jugador[0] }}</td>
+                        <td>{{ jugador[1] }}</td>
+                        <td>{{ jugador[2] }}</td>
+                        <td>
+                            <form action="{{ url_for('confirmar_eliminar_jugador', id=jugador[0]) }}" method="POST">
+                                <button type="submit">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No hay jugadores disponibles para eliminar.</p>
+    {% endif %}
+</main>
+
+</body>
+</html>

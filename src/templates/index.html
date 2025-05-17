@@ -71,7 +71,8 @@
 
     <!-- Insertar Datos -->
     {% if mostrar_insertar %}
-        <hr style="margin-top: 50px;margin-inline: 100px;">
+
+        <hr style="margin-top: 50px; margin-inline: 100px;">
 
         <section class="insertar-datos">
             <h2>&#10133; Insertar Datos</h2>
@@ -80,40 +81,53 @@
                 <li><a href="{{ url_for('nuevo_jugador') }}">Añadir un nuevo jugador</a></li>
                 <li><a href="{{ url_for('nuevo_partido') }}">Añadir un nuevo partido</a></li>
             </ul>
-        </section>
 
-        <style>
-
-            .centrado {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                margin-top: 30px;
-            }
-
-        </style>
-        <section class="centrado">
-            <p>
-                <a href="{{ url_for('logout') }}" class="btn-login">Cerrar sesión</a>
-            </p>
+            <h2>🗑️ Eliminar Datos</h2>
+            <ul>
+                <li><a href="{{ url_for('eliminar_equipo') }}">Eliminar un equipo</a></li>
+                <li><a href="{{ url_for('eliminar_jugador') }}">Eliminar un jugador</a></li>
+                <li><a href="{{ url_for('eliminar_partido') }}">Eliminar un partido</a></li>
+            </ul>
         </section>
     {% else %}
-        <!-- Enlace de Login -->
+
+         <!-- Chat con IA -->
+        <section class="insertar-datos">
+            <h2>🤖 Chat con IA</h2>
+            <ul>
+                <li><a href="{{ url_for('chat') }}">Habla con el asistente de fútbol</a></li>
+            </ul>
+        </section>
+        
+        <!-- Enlace de Login (si no es admin) -->
         <section class="login-link">
-                <h2>🔐 Acceso Administradores</h2>
+            <h2>🔐 Acceso Administradores</h2>
             <p>
-                <a href="{{ url_for('logout') }}" class="btn-login">Iniciar Sesión</a>
+                <a href="{{ url_for('login') }}" class="btn-login">Iniciar Sesión</a>
             </p>
         </section>
     {% endif %}
 
-        
+    <style>
+        .centrado {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+        }
+    </style>
+
+    <!-- Botón de Cerrar sesión -->
+    <section class="centrado">
+        <p>
+            {% if session.get('user') %}
+                <a href="{{ url_for('logout') }}" class="btn-login">Cerrar sesión</a>
+            {% endif %}
+        </p>
+    </section>
 
 </main>
 
 <footer>
     <p>Proyecto realizado con Flask & SQLite</p>
 </footer>
-
-</body>
-</html>
