@@ -481,6 +481,115 @@ INSERT INTO partidos (equipo1, equipo2, fecha, golesEquipo1, golesEquipo2) VALUE
 INSERT INTO partidos (equipo1, equipo2, fecha, golesEquipo1, golesEquipo2) VALUES
     ('Almería', 'Oviedo', '14-05-2025', 4, 2),
 
+-- Tabla de goleadores
+
+CREATE TABLE goleadores (
+  id INT PRIMARY KEY,
+  nombre VARCHAR(100),
+  equipo VARCHAR(50),
+  goles INT
+);
+
+INSERT INTO goleadores (id, nombre, equipo, goles) VALUES
+(1, 'Marcos Barrio Bayón', 'Almería', 40),
+(2, 'Jaime Ortega Pérez', 'Sevilla', 29),
+(3, 'Cristian Gallego Sánchez', 'León', 27),
+(4, 'Álvaro Hernández Picatoste', 'Almería', 26),
+(5, 'Jorge Espinós Carrascoso', 'Oviedo', 24),
+(6, 'Javier Giralte Martínez', 'Almería', 22),
+(7, 'Jhon David Rodríguez Uzho', 'Sevilla', 21),
+(8, 'Javier García Viñas', 'Segovia', 19),
+(9, 'Adrían Giralte Martínez', 'Almería', 19),
+(10, 'Victor Manuel Arán Ruíz de Assín', 'Oviedo', 18),
+(11, 'Gabriel Benitez Carabalí', 'Las Palmas', 18),
+(12, 'Alonso Díaz Hidalgo', 'Huelva', 18),
+(13, 'Gabriel Besari Martínez', 'Santander', 17),
+(14, 'Alberto Martínez Pascual', 'Oviedo', 17),
+(15, 'Jesús Valenciano Vergara', 'León', 17),
+(16, 'Gonzalo Cid Bustillo', 'Sevilla', 16),
+(17, 'Manuel Rodríguez Hernán', 'Santander', 16),
+(18, 'Borja del Arco Roldán', 'Oviedo', 16),
+(19, 'Borja Núñez Solis', 'León', 16),
+(20, 'Lucas Hernández Picatoste', 'Las Palmas', 16),
+(21, 'Álvaro Martínez Pérez', 'Albacete', 16),
+(22, 'Jorge Bueno Peiró', 'A Coruña', 15),
+(23, 'Gonzalo Núñez Solís', 'Huelva', 14),
+(24, 'Manuel Palacios Díaz', 'Zamora', 13),
+(25, 'Jorge Esteve Jiménez', 'León', 12),
+(26, 'Jorge Ramos Orobia', 'Oviedo', 11),
+(27, 'Rodrigo Esteban Sanz', 'León', 11),
+(28, 'Gonzalo Muñoz Hervas', 'Huelva', 11),
+(29, 'Miguel Vargas Hernández', 'Burgos', 11),
+(30, 'Santiago Granda Crespo', 'Zamora', 10),
+(31, 'Arón Rivas Hamid', 'Santander', 10),
+(32, 'Yerom Martínez de las Pozas', 'Burgos', 10),
+(33, 'Sergio Rodrigo Sánchez', 'Albacete', 10),
+(34, 'Juan Bosco Nogales Pérez', 'Sevilla', 9),
+(35, 'Alfredo Pérez Ruíz-Dana', 'Huelva', 9),
+(36, 'Ignacio Bartolomé García', 'Burgos', 9),
+(37, 'Jaime Gómez Pascual', 'Almería', 9),
+(38, 'Alberto Romeral Muñoz', 'Albacete', 9),
+(39, 'Carlos Hernández Ladra', 'A Coruña', 9),
+(40, 'Ángel Andrés Vicario', 'Zamora', 8),
+(41, 'Jaime Plaza García', 'Segovia', 8),
+(42, 'Ignacio Nadal Peyloubet', 'Huelva', 8),
+(43, 'Mario Cazaña Coello', 'Segovia', 7),
+(44, 'Nicolás Tauler Fernández', 'Santander', 7),
+(45, 'Jaime Núñez de Prado López', 'Oviedo', 7),
+(46, 'Luis Felipe León Silva', 'Las Palmas', 7),
+(47, 'Rafael Santibañez Aliseda', 'Almería', 7),
+(48, 'Álvaro Pedrosa Cavadas', 'León', 6),
+(49, 'Fernando Hernández de Santamaría Basurco', 'Albacete', 6),
+(50, 'César Minayo Aranda', 'Sevilla', 5),
+(51, 'Rodrigo Guillermo Valero Bistuer', 'Las Palmas', 5),
+(52, 'Gabriel Marina Castellanos', 'Huelva', 5),
+(53, 'Ignacio Núñez Solís', 'Huelva', 5),
+(54, 'Emilio Canet Pérez', 'Almería', 5),
+(55, 'Pablo Paraiso Sánchez-Pastor', 'Albacete', 5),
+(56, 'Pablo Blanco Gil', 'León', 4),
+(57, 'Joshua Rodríguez Pato', 'Las Palmas', 4),
+(58, 'Nacho Crespo Cánovas', 'Huelva', 4),
+(59, 'Jaime Gómez Fernández', 'A Coruña', 4),
+(60, 'Ángel de Mateo Cacín', 'A Coruña', 4),
+(61, 'Gonzalo Pradana Martínez-Laya', 'Zamora', 3),
+(62, 'Gonzalo Trujillo Aldana', 'Zamora', 3),
+(63, 'Hugo López Fernández', 'Segovia', 3),
+(64, 'Alejandro Megino Medrano', 'Santander', 3),
+(65, 'Javier Redondo Martín', 'Santander', 3),
+(66, 'Guillermo Gómez Camps', 'Oviedo', 3),
+(67, 'Carlos Núñez Ruíz', 'Oviedo', 3),
+(68, 'Rodrigo Castro García', 'Huelva', 3),
+(69, 'Alejandro Rodrigo Soria', 'Albacete', 3),
+(70, 'Alejandro Gallego Osorio', 'Zamora', 2),
+(71, 'David Suárez Salcedo', 'Zamora', 2),
+(72, 'Marcos Rico Pereda', 'Sevilla', 2),
+(73, 'Iñaki Larrauri Frías', 'Sevilla', 2),
+(74, 'Héctor dos Santos Rodero', 'Sevilla', 2),
+(75, 'Ignacio Gómez-Carrillo Sotos', 'Segovia', 2),
+(76, 'Álvaro Romero Mallo', 'Santander', 2),
+(77, 'Juan Urrutia Baily-Bailliere', 'Oviedo', 2),
+(78, 'Ignacio López-Meseguer Esteban', 'Burgos', 2),
+(79, 'Alejandro Rodrigo Sánchez', 'Almería', 2),
+(80, 'Nicolás García-Palencia Taboada', 'Almería', 2),
+(81, 'Pablo López Ruíz-Dana', 'A Coruña', 2),
+(82, 'Paul Byrne Rosales', 'Sevilla', 1),
+(83, 'Nicolás Romero González', 'Segovia', 1),
+(84, 'Pedro Javier Besari Martínez', 'Santander', 1),
+(85, 'Beltrán González Bello', 'Santander', 1),
+(86, 'Guillermo Cruz Rosell', 'Oviedo', 1),
+(87, 'Leonardo Nicaudie', 'León', 1),
+(88, 'Hugo del Molino Iglesias', 'León', 1),
+(89, 'Patricio Losada de Lira', 'Las Palmas', 1),
+(90, 'Antonio Pérez Montana', 'Huelva', 1),
+(91, 'Miguel Gratal Aguirre', 'Huelva', 1),
+(92, 'Ricardo Ugarte Abollado', 'Burgos', 1),
+(93, 'Gonzalo de Pablos Hernández', 'Burgos', 1),
+(94, 'Iván Velasco Fernández', 'Almería', 1),
+(95, 'Adrián Arequipa Ponce', 'Almería', 1),
+(96, 'Jacobo López-Jurado Reynolds', 'Albacete', 1);
+
+
+
 
 
 -- (ABS(RANDOM() % (11 - 1 + 1)) + 1, ABS(RANDOM() % (11 - 1 + 1)) + 1, CURRENT_TIMESTAMP , ABS(RANDOM() % (11 - 0 + 1)) + 0, ABS(RANDOM() % (11 - 0 + 1)) + 0);
@@ -609,3 +718,11 @@ WHERE (Local = 'Almería' AND Visitante = 'Oviedo')
 -- cambio de nombre de columnas
 ALTER TABLE partidos
 RENAME COLUMN golesEquipo2 TO "Goles Visitante";
+
+-- Saca todos los goleadores  de un equipo
+
+SELECT *
+FROM goleadores
+WHERE equipo = 'Almería';
+
+
