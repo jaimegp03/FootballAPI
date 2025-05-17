@@ -27,11 +27,11 @@
             <tbody>
                 {% for jugador in jugadores %}
                     <tr>
-                        <td>{{ jugador[0] }}</td>
-                        <td>{{ jugador[1] }}</td>
-                        <td>{{ jugador[2] }}</td>
+                        <td>{{ jugador["id"] }}</td>
+                        <td>{{ jugador["nombre"] }}</td>
+                        <td>{{ jugador["equipo"] }}</td>
                         <td>
-                            <form action="{{ url_for('confirmar_eliminar_jugador', id=jugador[0]) }}" method="POST">
+                            <form action="{{ url_for('confirmar_eliminar_jugador', id=jugador['id']) }}" method="POST">
                                 <button type="submit">Eliminar</button>
                             </form>
                         </td>

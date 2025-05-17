@@ -89,7 +89,7 @@ footer {
 
 /* Tablas generales */
 /* Tabla bonita */
-.tabla-datos {
+.tabla-datos, .tabla-partidos {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
@@ -99,13 +99,13 @@ footer {
     overflow: hidden;
 }
 
-.tabla-datos th, .tabla-datos td {
+.tabla-datos th, .tabla-datos td, .tabla-partidos th, .tabla-partidos td {
     padding: 12px 15px;
     text-align: center;
     border-bottom: 1px solid #ddd;
 }
 
-.tabla-datos thead th {
+.tabla-datos thead th, .tabla-partidos thead th {
     background-color: #e67e22;
     color: white;
     cursor: pointer;
@@ -113,19 +113,19 @@ footer {
     font-weight: bold;
 }
 
-.tabla-datos thead th::after {
+.tabla-datos thead th::after, .tabla-partidos thead th::after {
     content: " 🔽";
     font-size: 0.8rem;
     opacity: 0.5;
     transition: transform 0.2s ease;
 }
 
-.tabla-datos thead th.asc::after {
+.tabla-datos thead th.asc::after, .tabla-partidos thead th.asc::after {
     content: " 🔼";
     opacity: 0.9;
 }
 
-.tabla-datos thead th.desc::after {
+.tabla-datos thead th.desc::after, .tabla-partidos thead th.desc::after {
     content: " 🔽";
     opacity: 0.9;
 }

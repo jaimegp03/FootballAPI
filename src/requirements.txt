@@ -3,4 +3,4 @@ flask_cors
 requests
 JGVutils
 flask-wtf
-sqlite3
+openai

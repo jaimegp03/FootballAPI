@@ -357,7 +357,7 @@ def confirmar_eliminar_jugador(id):
         return "<p>⚠️ Acceso denegado</p><a href='/login'>Iniciar sesión</a>"
     
     # Elimina el jugador por ID
-    conexion.execute_query("DELETE FROM jugadores WHERE id = ?", [id])
+    conexion.execute_query("DELETE FROM jugadores WHERE id = ?", [id], commit = True)
     return redirect(url_for("eliminar_jugador"))
 
 
