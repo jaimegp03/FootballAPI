@@ -1,4 +1,4 @@
-/* Fuentes y reset básico */
+/* Pagina principal*/
 * {
     box-sizing: border-box;
     margin: 0;
@@ -88,7 +88,6 @@ footer {
 }
 
 /* Tablas generales */
-/* Tabla bonita */
 .tabla-datos, .tabla-partidos {
     width: 100%;
     border-collapse: collapse;
@@ -282,7 +281,7 @@ ul li {
     background-color: #2980b9;
 }
 
-/* Responsive */
+/* Tarjetas */
 @media (max-width: 768px) {
     .tarjetas {
         flex-direction: column;
@@ -294,17 +293,15 @@ ul li {
     }
 }
 
-/* ======================
-   Estilos para login
-   ====================== */
+/* Estilos del login */
 
 .login-body {
     margin: 0;
     padding: 0;
-    min-height: 100vh; /* Altura completa de la pantalla */
+    min-height: 100vh;
     display: flex;
-    justify-content: center; /* Centrado horizontal */
-    align-items: center;     /* Centrado vertical */
+    justify-content: center;
+    align-items: center;
     background-color: #f4f4f4;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -424,7 +421,7 @@ ul li {
     text-decoration: underline;
 }
 
-/* Estadísticas - Datos Informativos */
+/* Datos Informativos */
 .estadisticas {
     display: flex;
     justify-content: center;
@@ -471,9 +468,7 @@ ul li {
     background-color: #2980b9;
 }
 
-/* ======================
-   Estilos para el chat con IA
-   ====================== */
+/* Estilos para el chat con IA */
 
 .chat-container {
     max-width: 500px;

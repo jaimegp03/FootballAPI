@@ -1,4 +1,3 @@
-<!-- templates/index.html -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -10,7 +9,7 @@
 <body>
 
 <header class="hero-section">
-    <h1>⚽ Bienvenido a la Liga Deportiva de Retamar</h1>
+    <h1>&#9917; Bienvenido a la Liga Deportiva de Retamar</h1>
     <p>Explora los datos de equipos, partidos y estadísticas de la liga.</p>
 </header>
 
@@ -19,11 +18,11 @@
     <!-- Estadísticas generales -->
     <section class="estadisticas">
         <div class="dato-informativo">
-            <i>👥</i>
+            <i>&#128101;</i>
             <p>{{ total_equipos }} 12 equipos</p>
         </div>
         <div class="dato-informativo">
-            <i>👤</i>
+            <i>&#128100;</i>
             <p>{{ total_jugadores }} 176 jugadores</p>
         </div>
     </section>
@@ -32,19 +31,19 @@
     <div class="tarjetas">
         <!-- Tarjeta: Equipos -->
         <a href="{{ url_for('obtener_equipos') }}" class="tarjeta">
-            <h2>👥 Equipos</h2>
+            <h2>&#128101; Equipos</h2>
             <p>Ver todos los equipos registrados en la base de datos.</p>
         </a>
 
         <!-- Tarjeta: Clasificación -->
         <a href="{{ url_for('obtener_clasificacion') }}" class="tarjeta">
-            <h2>🏆 Clasificación</h2>
+            <h2>&#127942; Clasificación</h2>
             <p>Consulta la tabla de posiciones actualizada.</p>
         </a>
 
         <!-- Tarjeta: Horario de partidos -->
         <a href="{{ url_for('obtener_horario_partidos') }}" class="tarjeta">
-            <h2>📅 Horario de Partidos</h2>
+            <h2>&#128197; Horario de Partidos</h2>
             <p>Consulta las fechas y horarios de todos los partidos.</p>
         </a>
 
@@ -58,7 +57,7 @@
     <!-- Máximos goleadores -->
     {% if maximos_goleadores %}
         <section class="seccion-goleadores">
-            <h2>🥅 Jugadores Destacados</h2>
+            <h2>&#127945; Jugadores Destacados</h2>
             <ul>
                 {% for goleador in maximos_goleadores[:5] %}
                     <li>
@@ -81,19 +80,12 @@
                 <li><a href="{{ url_for('nuevo_jugador') }}">Añadir un nuevo jugador</a></li>
                 <li><a href="{{ url_for('nuevo_partido') }}">Añadir un nuevo partido</a></li>
             </ul>
-
-            <h2>🗑️ Eliminar Datos</h2>
-            <ul>
-                <li><a href="{{ url_for('eliminar_equipo') }}">Eliminar un equipo</a></li>
-                <li><a href="{{ url_for('eliminar_jugador') }}">Eliminar un jugador</a></li>
-                <li><a href="{{ url_for('eliminar_partido') }}">Eliminar un partido</a></li>
-            </ul>
         </section>
     {% else %}
 
          <!-- Chat con IA -->
         <section class="insertar-datos">
-            <h2>🤖 Chat con IA</h2>
+            <h2>&#x1F916; Chat con IA</h2>
             <ul>
                 <li><a href="{{ url_for('chat') }}">Habla con el asistente de fútbol</a></li>
             </ul>
@@ -101,7 +93,7 @@
         
         <!-- Enlace de Login (si no es admin) -->
         <section class="login-link">
-            <h2>🔐 Acceso Administradores</h2>
+            <h2>&#128274; Acceso Administradores</h2>
             <p>
                 <a href="{{ url_for('login') }}" class="btn-login">Iniciar Sesión</a>
             </p>
