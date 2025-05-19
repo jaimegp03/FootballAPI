@@ -18,14 +18,14 @@
         <label for="equipo1">Equipo Local:</label>
         <select name="equipo1" required>
             {% for equipo in equipos %}
-                <option value="{{ equipo[0] }}">{{ equipo[1] }}</option>
+                <option value="{{ equipo['id'] }}">{{ equipo["nombre"] }}</option>
             {% endfor %}
         </select>
 
         <label for="equipo2">Equipo Visitante:</label>
         <select name="equipo2" required>
             {% for equipo in equipos %}
-                <option value="{{ equipo[0] }}">{{ equipo[1] }}</option>
+                <option value="{{ equipo['id'] }}">{{ equipo["nombre"] }}</option>
             {% endfor %}
         </select>
 

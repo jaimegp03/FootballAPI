@@ -28,6 +28,9 @@ CREATE TABLE usuarios (
     password TEXT
 );
 
+-- Usuarios
+INSERT INTO usuarios VALUES ('admin', 'Administrador', 123);
+
 -- Datos de equipos
 INSERT INTO equipos (nombre, creacion) VALUES
     ('Oviedo', 2025),
@@ -58,7 +61,7 @@ INSERT INTO jugadores (nombre, edad, posicion, numero, equipo) VALUES
     ('Alejandro Rodrigo', 20, 'Defensa', 8, 'Almería'),
     ('Marcos Barrio', 20, 'Medio campor', 9, 'Almería'),
     ('Alvaro Hernandez', 19, 'Delantero', 11, 'Almería'),
-    ('Emilio Canet', 20, 'Banquillo', 14, 'Almería'),
+    ('Emilio Canet', 20, 'Banquillo', 14, 'Almería');
 
 -- Leon
 INSERT INTO jugadores (nombre, edad, posicion, numero, equipo) VALUES
@@ -70,10 +73,10 @@ INSERT INTO jugadores (nombre, edad, posicion, numero, equipo) VALUES
 ('Pablo Blanco', 18, 'Medio Campo', 8, 'Leon'),
 ('Leonardo Nicaudie', 17, 'Delantero', 9, 'Leon'),
 ('Borja Núñez', 16, 'Delantero', 10, 'Leon'),
-('Hugo del Molino', 16, 'Delantero', 11, 'Leon'),
+('Hugo del Molino', 16, 'Delantero', 11, 'Leon');
 
-INSERT INTO jugadores (nombre, edad, posicion, numero, equipo) VALUES
 -- Burgos
+INSERT INTO jugadores (nombre, edad, posicion, numero, equipo) VALUES
 ('Álvaro Silva', 18, 'Portero', 1, 'Burgos'),
 ('Alfonso Boredería', 17, 'Defensa', 2, 'Burgos'),
 ('Miguel Vargas', 17, 'Defensa', 3, 'Burgos'),
@@ -83,11 +86,10 @@ INSERT INTO jugadores (nombre, edad, posicion, numero, equipo) VALUES
 ('Gonzalo de Pablos', 17, 'Medio Campo', 8, 'Burgos'),
 ('Gabriel Zapatero',18 , 'Delantero', 9, 'Burgos'),
 ('Pablo Alonso', 18, 'Delantero', 10, 'Burgos'),
-('Jonathan D. Palo', 17, 'Delantero', 11, 'Burgos'),
+('Jonathan D. Palo', 17, 'Delantero', 11, 'Burgos');
 
-
-INSERT INTO jugadores (nombre, edad, posicion, numero, equipo) VALUES
 -- Oviedo
+INSERT INTO jugadores (nombre, edad, posicion, numero, equipo) VALUES
 ('Julio Segarra', 25, 'Portero', 1, 'Oviedo'),
 ('Jorge Ramos', 26, 'Defensa', 3, 'Oviedo'),
 ('Juan Urrutia', 28, 'Defensa', 4, 'Oviedo'),
@@ -98,11 +100,10 @@ INSERT INTO jugadores (nombre, edad, posicion, numero, equipo) VALUES
 ('Victor Manuel Arán', 25, 'Delantero', 9, 'Oviedo'),
 ('Jaime Núñez de prado', 27, 'Delantero', 10, 'Oviedo'),
 ('Guillermo Cruz', 28, 'Delantero', 11, 'Oviedo'),
-('Jorge Espinós', 26, 'Defensa', 12, 'Oviedo'),
+('Jorge Espinós', 26, 'Defensa', 12, 'Oviedo');
 
-
-INSERT INTO jugadores (nombre, edad, posicion, numero, equipo) VALUES
 -- A Coruña
+INSERT INTO jugadores (nombre, edad, posicion, numero, equipo) VALUES
 ('Pelayo Bernárdez', 18, 'Portero', 1, 'A Coruña'),
 ('Jorge Miró', 17, 'Defensa', 3, 'A Coruña'),
 ('Pablo Barrientos', 18, 'Defensa', 4, 'A Coruña'),
@@ -112,11 +113,10 @@ INSERT INTO jugadores (nombre, edad, posicion, numero, equipo) VALUES
 ('Angel de Mateo', 17, 'Medio Campo', 8, 'A Coruña'),
 ('Carlos Hernández', 17, 'Delantero', 9, 'A Coruña'),
 ('Pablo López', 19, 'Delantero', 11, 'A Coruña'),
-('Ignacio Bartolomé', 18, 'Defensa', 14, 'A Coruña'),
+('Ignacio Bartolomé', 18, 'Defensa', 14, 'A Coruña');
 
-
-INSERT INTO jugadores (nombre, edad, posicion, numero, equipo) VALUES
 -- Albacete
+INSERT INTO jugadores (nombre, edad, posicion, numero, equipo) VALUES
 ('Jacobo López-Jurado', 17, 'Defensa', 3, 'Albacete'),
 ('Álvaro Martínez', 19, 'Defensa', 4, 'Albacete'),
 ('Sergio Rodrigo', 17, 'Defensa', 5, 'Albacete'),
@@ -125,11 +125,10 @@ INSERT INTO jugadores (nombre, edad, posicion, numero, equipo) VALUES
 ('Alberto Romeral', 19, 'Medio Campo', 8, 'Albacete'),
 ('Arturo Orea', 16, 'Delantero', 9, 'Albacete'),
 ('Alejandro Rodrigo', 17, 'Delantero', 10, 'Albacete'),
-('Pablo Paraiso', 19, 'Delantero', 11, 'Albacete'),
+('Pablo Paraiso', 19, 'Delantero', 11, 'Albacete');
 
-
-INSERT INTO jugadores (nombre, edad, posicion, numero, equipo) VALUES
 --Las Palmas
+INSERT INTO jugadores (nombre, edad, posicion, numero, equipo) VALUES
 ('D. Josemaría Martínez-Echevarría', 45, 'Portero', 2, 'Las Palmas'),
 ('Juan A. Sebastián', 18, 'Defensa', 3, 'Las Palmas'),
 ('Hugo Calderon', 18, 'Defensa', 4, 'Las Palmas'),
@@ -138,11 +137,10 @@ INSERT INTO jugadores (nombre, edad, posicion, numero, equipo) VALUES
 ('Rodrigo G. Valero', 17, 'Medio Campo', 8, 'Las Palmas'),
 ('Joshua Rodríguez', 18, 'Delantero', 9, 'Las Palmas'),
 ('Íñigo Aguado', 17, 'Delantero', 11, 'Las Palmas'),
-('Gabriel A. Benítez', 16, 'Medio Campo', 12, 'Las Palmas'),
+('Gabriel A. Benítez', 16, 'Medio Campo', 12, 'Las Palmas');
 
-
-INSERT INTO jugadores (nombre, edad, posicion, numero, equipo) VALUES
 -- Santander
+INSERT INTO jugadores (nombre, edad, posicion, numero, equipo) VALUES
 ('Alberto Arribas', 21, 'Portero', 1, 'Santander'),
 ('Pedro J. Besari', 20, 'Defensa', 2, 'Santander'),
 ('Nicolás Tauler', 19, 'Defensa', 3, 'Santander'),
@@ -154,11 +152,10 @@ INSERT INTO jugadores (nombre, edad, posicion, numero, equipo) VALUES
 ('Arón Rivas', 19, '', 9, 'Santander'),
 ('Beltrán Gonzalez', 18, 'Delantero', 10, 'Santander'),
 ('Javier Redondo', 18, 'Delantero', 11, 'Santander'),
-('Alfonso Aragón', 19, 'Medio Campo', 12, 'Santander'),
+('Alfonso Aragón', 19, 'Medio Campo', 12, 'Santander');
 
-
-INSERT INTO jugadores (nombre, edad, posicion, numero, equipo) VALUES
 -- Segovia
+INSERT INTO jugadores (nombre, edad, posicion, numero, equipo) VALUES
 ('Marco García', 19, 'Portero', 1, 'Segovia'),
 ('Felipe Viñas', 17, 'Defensa', 2, 'Segovia'),
 ('Hugo López', 18, 'Defensa', 3, 'Segovia'),
@@ -170,11 +167,10 @@ INSERT INTO jugadores (nombre, edad, posicion, numero, equipo) VALUES
 ('César Martín-Crespo', 18, 'Delantero', 9, 'Segovia'),
 ('Iker de la Quintana', 19, 'Delantero', 10, 'Segovia'),
 ('David Adrés Vicario', 19, 'Delantero', 11, 'Segovia'),
-('Ignacio Gómez-Carrillo', 18, 'Medio Campo', 12, 'Segovia'),
+('Ignacio Gómez-Carrillo', 18, 'Medio Campo', 12, 'Segovia');
 
-
-INSERT INTO jugadores (nombre, edad, posicion, numero, equipo) VALUES
 -- Sevilla
+INSERT INTO jugadores (nombre, edad, posicion, numero, equipo) VALUES
 ('Daniel Gavira', 17, 'Portero', 1, 'Sevilla'),
 ('Marcos Rico', 19, 'Defensa', 2, 'Sevilla'),
 ('Juan Bosco Nogales', 18, 'Defensa', 3, 'Sevilla'),
@@ -185,10 +181,10 @@ INSERT INTO jugadores (nombre, edad, posicion, numero, equipo) VALUES
 ('Jhon David', 18, 'Delantero', 10, 'Sevilla'),
 ('Iñaki Larrauri', 17, 'Delantero', 11, 'Sevilla'),
 ('Paul Byrne', 19, 'Medio Campo', 12, 'Sevilla'),
-('Carlos Pardo', 18, 'Defensa', 14, 'Sevilla'),
+('Carlos Pardo', 18, 'Defensa', 14, 'Sevilla');
 
-INSERT INTO jugadores (nombre, edad, posicion, numero, equipo) VALUES
 -- Zamora
+INSERT INTO jugadores (nombre, edad, posicion, numero, equipo) VALUES
 ('Leonardo Hernández', 40, 'Portero', 1, 'Zamora'),
 ('Gonzalo Trujillo', 19, 'Defensa', 2, 'Zamora'),
 ('Angel Andres Vicario', 19, 'Defensa', 3, 'Zamora'),
@@ -198,11 +194,10 @@ INSERT INTO jugadores (nombre, edad, posicion, numero, equipo) VALUES
 ('Pascal Bogdanov', 19, 'Medio Campo', 8, 'Zamora'),
 ('David Suárez', 18, 'Delantero', 9, 'Zamora'),
 ('Manuel Palacios', 18, 'Delantero', 11, 'Zamora'),
-('Gonzalo Pradana', 19, 'Medio Campo', 12, 'Zamora'),
+('Gonzalo Pradana', 19, 'Medio Campo', 12, 'Zamora');
 
-
-INSERT INTO jugadores (nombre, edad, posicion, numero, equipo) VALUES
 -- Huelva
+INSERT INTO jugadores (nombre, edad, posicion, numero, equipo) VALUES
 ('Iganacio Núñez', 19, 'Portero', 1, 'Huelva'),
 ('Gabriel Marina', 18, 'Defensa', 3, 'Huelva'),
 ('Miguel Gratal', 20, 'Defensa', 4, 'Huelva'),
@@ -213,7 +208,7 @@ INSERT INTO jugadores (nombre, edad, posicion, numero, equipo) VALUES
 ('Gonzalo Núñez', 21, 'Delantero', 9, 'Huelva'),
 ('Antonio Pérez', 18, 'Delantero', 10, 'Huelva'),
 ('Gonzalo Muñoz', 22, 'Delantero', 11, 'Huelva'),
-('Alfredo Pérez', 19, 'Medio Campo', 12, 'Huelva'),
+('Alfredo Pérez', 19, 'Medio Campo', 12, 'Huelva');
 
 
 -- ('sin-nombre', 99, 'sin-posicion', 2, ABS(RANDOM() % (11 - 1 + 1)) + 1);
@@ -242,7 +237,7 @@ INSERT INTO partidos (equipo1, equipo2, fecha, golesEquipo1, golesEquipo2) VALUE
     ('Sevilla', 'Albacete', '07/10/2024', 6, 0),
     ('Almería', 'Santander', '07/10/2024', 3, 0),
     ('A Coruña', 'Zamora', '07/10/2024', 0, 3),
-    ('Las Palmas', 'Burgos', '07/10/2024', 2, 7),
+    ('Las Palmas', 'Burgos', '07/10/2024', 2, 7);
 
 -- 14/10/2024
 INSERT INTO partidos (equipo1, equipo2, fecha, golesEquipo1, golesEquipo2) VALUES
@@ -250,23 +245,23 @@ INSERT INTO partidos (equipo1, equipo2, fecha, golesEquipo1, golesEquipo2) VALUE
     ('Santander', 'A Coruña', '14-10-2024', 8, 1),
     ('Zamora', 'Las Palmas', '14-10-2024', 9, 3),
     ('Leon', 'Sevilla', '14-10-2024', 5, 4),
-    ('Almería', 'Albacete', '14-10-2024', 14, 1),
+    ('Almería', 'Albacete', '14-10-2024', 14, 1);
 
 -- 17/10/2024
 INSERT INTO partidos (equipo1, equipo2, fecha, golesEquipo1, golesEquipo2) VALUES
     ('Albacete', 'Oviedo', '17-10-2024', 0, 6),
-    ('Almería', 'Huelva', '17-10-2024', 2, 1),
+    ('Almería', 'Huelva', '17-10-2024', 2, 1);
 
 -- 21/10/2024
 INSERT INTO partidos (equipo1, equipo2, fecha, golesEquipo1, golesEquipo2) VALUES
     ('Sevilla', 'Burgos', '21-10-2024', 8, 2),
     ('Segovia', 'Zamora', '21-10-2024', 0, 4),
     ('A Coruña', 'Almería', '21-10-2024', 2, 11),
-    ('Las Palmas', 'Santander', '21-10-2024', 3, 6),
+    ('Las Palmas', 'Santander', '21-10-2024', 3, 6);
 
 -- 24/10/2024
 INSERT INTO partidos (equipo1, equipo2, fecha, golesEquipo1, golesEquipo2) VALUES
-    ('Oviedo', 'Leon', '24-10-2024', 3, 1),
+    ('Oviedo', 'Leon', '24-10-2024', 3, 1);
 
 -- 28/10/2024
 INSERT INTO partidos (equipo1, equipo2, fecha, golesEquipo1, golesEquipo2) VALUES
@@ -274,12 +269,12 @@ INSERT INTO partidos (equipo1, equipo2, fecha, golesEquipo1, golesEquipo2) VALUE
     ('Santander', 'Segovia', '28-10-2024', 3, 0),
     ('Zamora', 'Sevilla', '28-10-2024', 3, 0),
     ('Almería', 'Las Palmas', '28-10-2024', 12, 0),
-    ('A Coruña', 'Burgos', '28-10-2024', 3, 0),
+    ('A Coruña', 'Burgos', '28-10-2024', 3, 0);
 
 -- 29/10/2024
 INSERT INTO partidos (equipo1, equipo2, fecha, golesEquipo1, golesEquipo2) VALUES
     ('Huelva', 'Leon', '29-10-2024', 1, 4),
-    ('Oviedo', 'Zamora', '29-10-2024', 4, 2),
+    ('Oviedo', 'Zamora', '29-10-2024', 4, 2);
 
 -- 04/11/2024
 INSERT INTO partidos (equipo1, equipo2, fecha, golesEquipo1, golesEquipo2) VALUES
@@ -287,12 +282,12 @@ INSERT INTO partidos (equipo1, equipo2, fecha, golesEquipo1, golesEquipo2) VALUE
     ('Segovia', 'Almería', '04-11-2024', 2, 7),
     ('Sevilla', 'Santander', '04-11-2024', 4, 0),
     ('Leon', 'Zamora', '04-11-2024', 6, 5),
-    ('Albacete', 'Burgos', '04-11-2024', 4, 4),
+    ('Albacete', 'Burgos', '04-11-2024', 4, 4);
 
 -- 07/11/2024
 INSERT INTO partidos (equipo1, equipo2, fecha, golesEquipo1, golesEquipo2) VALUES
     ('A Coruña', 'Huelva', '07-11-2024', 1, 7),
-    ('Burgos', 'Oviedo', '07-11-2024', 1, 9),
+    ('Burgos', 'Oviedo', '07-11-2024', 1, 9);
 
 -- 11/11/2024
 INSERT INTO partidos (equipo1, equipo2, fecha, golesEquipo1, golesEquipo2) VALUES
@@ -300,52 +295,52 @@ INSERT INTO partidos (equipo1, equipo2, fecha, golesEquipo1, golesEquipo2) VALUE
     ('Burgos', 'Leono', '11-11-2024', 0, 7),
     ('Almería', 'Sevilla', '11-11-2024', 3, 1),
     ('A Coruña', 'Segovia', '11-11-2024', 0, 4),
-    ('Santander', 'Zamora', '11-11-2024',2 , 3),
+    ('Santander', 'Zamora', '11-11-2024',2 , 3);
 
 -- 14/11/2024
 INSERT INTO partidos (equipo1, equipo2, fecha, golesEquipo1, golesEquipo2) VALUES
     ('Santander', 'Oviedo', '14-11-2024', 1, 7),
-    ('Huelva', 'Albacete', '14-11-2024', 0, 0),
+    ('Huelva', 'Albacete', '14-11-2024', 0, 0);
 
 -- 18/11/2024
 INSERT INTO partidos (equipo1, equipo2, fecha, golesEquipo1, golesEquipo2) VALUES
     ('Santander', 'Leon', '18-11-2024', 1, 3),
     ('Sevilla', 'A Coruña', '18-11-2024', 2, 0),
     ('Zamora', 'Albacete', '18-11-2024', 1, 3),
-    ('Segovia', 'Las Palmas', '18-11-2024', 0, 5),
+    ('Segovia', 'Las Palmas', '18-11-2024', 0, 5);
 
 -- 21/11/2024
 INSERT INTO partidos (equipo1, equipo2, fecha, golesEquipo1, golesEquipo2) VALUES
     ('Oviedo', 'Almería', '21-11-2024', 3, 3),
-    ('Las Palmas', 'Huelva', '21-11-2024', 1, 6),
+    ('Las Palmas', 'Huelva', '21-11-2024', 1, 6);
 
 -- 25/11/2024
 INSERT INTO partidos (equipo1, equipo2, fecha, golesEquipo1, golesEquipo2) VALUES
     ('Leon', 'Almería', '25-11-2024', 1, 5),
     ('Las Palmas', 'Sevilla', '25-11-2024', 0, 2),
     ('Zamora', 'Burgos', '25-11-2024', 5, 2),
-    ('Albacete', 'Santander', '25-11-2024', 6, 9),
+    ('Albacete', 'Santander', '25-11-2024', 6, 9);
 
 -- 26/11/2024
 INSERT INTO partidos (equipo1, equipo2, fecha, golesEquipo1, golesEquipo2) VALUES
-    ('Huelva', 'Burgos', '26-11-2024', 9, 0),
+    ('Huelva', 'Burgos', '26-11-2024', 9, 0);
 
 -- 28/11/2024
 INSERT INTO partidos (equipo1, equipo2, fecha, golesEquipo1, golesEquipo2) VALUES
     ('A Coruña', 'Oviedo', '28-11-2024', 0, 0),
-    ('Segovia', 'Huelva', '28-11-2024', 0, 7),
+    ('Segovia', 'Huelva', '28-11-2024', 0, 7);
 
 -- 02/12/2024
 INSERT INTO partidos (equipo1, equipo2, fecha, golesEquipo1, golesEquipo2) VALUES
     ('Albacete', 'A Coruña', '02-12-2024', 7, 3),
     ('Burgos', 'Santander', '02-12-2024', 0, 6),
     ('Las Palmas', 'Zamora', '02-12-2024', 0, 0),
-    ('Sevilla', 'Segovia', '02-12-2024', 7, 4),
+    ('Sevilla', 'Segovia', '02-12-2024', 7, 4);
 
 -- 03/12/2024
 INSERT INTO partidos (equipo1, equipo2, fecha, golesEquipo1, golesEquipo2) VALUES
     ('Las Palmas', 'Oviedo', '03-12-2024', 1, 7),
-    ('Zamora', 'Huelva', '03-12-2024', 0, 3),
+    ('Zamora', 'Huelva', '03-12-2024', 0, 3);
 
 -- 09/12/2024
 INSERT INTO partidos (equipo1, equipo2, fecha, golesEquipo1, golesEquipo2) VALUES
@@ -353,27 +348,27 @@ INSERT INTO partidos (equipo1, equipo2, fecha, golesEquipo1, golesEquipo2) VALUE
     ('A coruña', 'Leon', '09-12-2024', 2, 4),
     ('Almería', 'Burgos', '09-12-2024', 9, 2),
     ('Santander', 'Las Palmas', '09-12-2024', 6, 4),
-    ('Zamora', 'Segovia', '09-12-2024', 2, 4),
+    ('Zamora', 'Segovia', '09-12-2024', 2, 4);
 
 -- 10/12/2024
 INSERT INTO partidos (equipo1, equipo2, fecha, golesEquipo1, golesEquipo2) VALUES
     ('Huelva', 'Sevilla', '10-12-2024', 1, 4),
-    ('Segovia', 'Oviedo', '10-12-2024', 1, 6),
+    ('Segovia', 'Oviedo', '10-12-2024', 1, 6);
 
 -- 12/12/2024
 INSERT INTO partidos (equipo1, equipo2, fecha, golesEquipo1, golesEquipo2) VALUES
-    ('Huelva', 'Oviedo', '12-12-2024', 2, 2),
+    ('Huelva', 'Oviedo', '12-12-2024', 2, 2);
 
 -- 13/01/2025
 INSERT INTO partidos (equipo1, equipo2, fecha, golesEquipo1, golesEquipo2) VALUES
     ('Segobia', 'Albacete', '13-01-2025', 3, 4),
     ('A Coruña', 'Santander', '13-01-2025',0 , 0),
-    ('Almería', 'Zamora', '13-01-2025', 6, 0),
+    ('Almería', 'Zamora', '13-01-2025', 6, 0);
 
 -- 16/01/2025
 INSERT INTO partidos (equipo1, equipo2, fecha, golesEquipo1, golesEquipo2) VALUES
     ('Sevilla', 'Oviedo', '16-01-2025', 1, 9),
-    ('Huelva', 'Santander', '16-01-2025', 5, 0),
+    ('Huelva', 'Santander', '16-01-2025', 5, 0);
 
 -- 20/01/2025
 INSERT INTO partidos (equipo1, equipo2, fecha, golesEquipo1, golesEquipo2) VALUES
@@ -381,20 +376,20 @@ INSERT INTO partidos (equipo1, equipo2, fecha, golesEquipo1, golesEquipo2) VALUE
     ('Sevilla', 'Almería', '20-01-2025', 2, 6),
     ('Santander', 'Albacete', '20-01-2025', 7, 5),
     ('Zamora', 'A Coruña', '20-01-2025', 2, 5),
-    ('Leon', 'Segovia', '20-01-2025', 11, 1),
+    ('Leon', 'Segovia', '20-01-2025', 11, 1);
 
 -- 27/01/2025
 INSERT INTO partidos (equipo1, equipo2, fecha, golesEquipo1, golesEquipo2) VALUES
     ('Segovia', 'Burgos', '27-01-2025', 1, 2),
     ('Sevilla', 'Leon', '27-01-2025', 0, 2),
     ('A Coruña', 'Las Palmas', '27-01-2025', 4, 2),
-    ('Santander', 'Almería', '27-01-2025', 5, 2),
+    ('Santander', 'Almería', '27-01-2025', 5, 2);
 
 -- 30/01/2025
 INSERT INTO partidos (equipo1, equipo2, fecha, golesEquipo1, golesEquipo2) VALUES
     ('Las Palmas', 'Leon', '30-01-2025', 2, 8),
     ('Huelva', 'Almería', '30-01-2025', 1, 3),
-    ('Oviedo', 'Albacete', '30-01-2025', 6, 0),
+    ('Oviedo', 'Albacete', '30-01-2025', 6, 0);
 
 -- 03/02/2025
 INSERT INTO partidos (equipo1, equipo2, fecha, golesEquipo1, golesEquipo2) VALUES
@@ -402,11 +397,11 @@ INSERT INTO partidos (equipo1, equipo2, fecha, golesEquipo1, golesEquipo2) VALUE
     ('Almería', 'A Coruña', '03-02-2025', 5, 1),
     ('Segovia', 'Santander', '03-02-2025', 3, 6),
     ('Albacete', 'Leon', '03-02-2025', 0, 0),
-    ('Sevilla', 'Las Palmas', '03-02-2025', 11, 4),
+    ('Sevilla', 'Las Palmas', '03-02-2025', 11, 4);
 
 -- 06/02/2025
 INSERT INTO partidos (equipo1, equipo2, fecha, golesEquipo1, golesEquipo2) VALUES
-    ('Leon', 'Oviedo', '06-02-2025', 1, 5),
+    ('Leon', 'Oviedo', '06-02-2025', 1, 5);
 
 -- 10/02/2025
 INSERT INTO partidos (equipo1, equipo2, fecha, golesEquipo1, golesEquipo2) VALUES
@@ -414,72 +409,72 @@ INSERT INTO partidos (equipo1, equipo2, fecha, golesEquipo1, golesEquipo2) VALUE
     ('Segovia', 'A Coruña', '10-02-2025', 2, 3),
     ('Leon', 'Santander', '10-02-2025', 0, 0),
     ('Las Palmas', 'Almería', '10-02-2025', 5, 9),
-    ('Burgos', 'Sevilla', '10-02-2025', 0, 17),
+    ('Burgos', 'Sevilla', '10-02-2025', 0, 17);
 
 -- 13/02/2025
 INSERT INTO partidos (equipo1, equipo2, fecha, golesEquipo1, golesEquipo2) VALUES
     ('Las Palmas', 'Oviedo', '13-02-2025', 1, 9),
-    ('Huelva', 'A Coruña', '13-02-2025', 0, 0),
+    ('Huelva', 'A Coruña', '13-02-2025', 0, 0);
 
 -- 17/02/2025
 INSERT INTO partidos (equipo1, equipo2, fecha, golesEquipo1, golesEquipo2) VALUES
     ('Albacete', 'Las Palmas', '17-02-2025', 7, 3),
     ('Almería', 'Segovia', '17-02-2025', 4, 2),
     ('Santander', 'Sevilla', '17-02-2025', 1, 3),
-    ('Leon', 'Burgos', '17-02-2025', 8, 3),
+    ('Leon', 'Burgos', '17-02-2025', 8, 3);
 
 -- 18/02/2025
 INSERT INTO partidos (equipo1, equipo2, fecha, golesEquipo1, golesEquipo2) VALUES
     ('Las Palmas', 'Segovia', '18-02-2025', 4, 2),
     ('Oviedp', 'Santander', '18-02-2025', 2, 0),
-    ('Burgos', 'Huelva', '18-02-2025', 2, 7),
+    ('Burgos', 'Huelva', '18-02-2025', 2, 7);
 
 -- 20/02/2025
 INSERT INTO partidos (equipo1, equipo2, fecha, golesEquipo1, golesEquipo2) VALUES
     ('Huelva', 'Leon', '20-02-2025', 2, 3),
-    ('Oviedo', 'Burgos', '20-02-2025', 6, 1),
+    ('Oviedo', 'Burgos', '20-02-2025', 6, 1);
 
 -- 24/02/2025
 INSERT INTO partidos (equipo1, equipo2, fecha, golesEquipo1, golesEquipo2) VALUES
     ('Burgos', 'Albacete', '24-02-2025', 0, 1),
     ('Segovia', 'Sevilla', '24-02-2025', 0, 6),
-    ('Almería', 'Leon', '24-02-2025', 9, 1),
+    ('Almería', 'Leon', '24-02-2025', 9, 1);
 
 -- 25/02/2025
 INSERT INTO partidos (equipo1, equipo2, fecha, golesEquipo1, golesEquipo2) VALUES
-    ('Huelva', 'Segovia', '25-02-2025', 10, 3),
+    ('Huelva', 'Segovia', '25-02-2025', 10, 3);
 
 -- 05/03/2025
 INSERT INTO partidos (equipo1, equipo2, fecha, golesEquipo1, golesEquipo2) VALUES
     ('Burgos', 'Almería', '05-03-2025', 3, 9),
     ('Oviedo', 'Segovia', '05-03-2025', 7, 1),
-    ('Albacete', 'Huelva', '05-03-2025', 0, 0),
+    ('Albacete', 'Huelva', '05-03-2025', 0, 0);
 
 -- 06/03/2025
 INSERT INTO partidos (equipo1, equipo2, fecha, golesEquipo1, golesEquipo2) VALUES
-    ('Huelva', 'Las Palmas', '06-03-2025', 8, 2),
+    ('Huelva', 'Las Palmas', '06-03-2025', 8, 2);
 
 -- 10/03/2025
 INSERT INTO partidos (equipo1, equipo2, fecha, golesEquipo1, golesEquipo2) VALUES
     ('Santander', 'Almería', '10-03-2025', 3, 6),
     ('Segovia', 'Sevilla', '10-03-2025', 0, 5),
-    ('Burgos', 'Albacete', '10-03-2025', 4, 0),
+    ('Burgos', 'Albacete', '10-03-2025', 4, 0);
 
 -- 11/03/2025
 INSERT INTO partidos (equipo1, equipo2, fecha, golesEquipo1, golesEquipo2) VALUES
-    ('Huelva', 'Oviedo', '11-03-2025', 0, 1),
+    ('Huelva', 'Oviedo', '11-03-2025', 0, 1);
 
 -- 17/03/2025
 INSERT INTO partidos (equipo1, equipo2, fecha, golesEquipo1, golesEquipo2) VALUES
-    ('Santander', 'Burgos', '17-03-2025', 3, 1),
+    ('Santander', 'Burgos', '17-03-2025', 3, 1);
 
 -- 25/03/2025
 INSERT INTO partidos (equipo1, equipo2, fecha, golesEquipo1, golesEquipo2) VALUES
-    ('Sevilla', 'Huelva', '25-03-2025', 0, 2),
+    ('Sevilla', 'Huelva', '25-03-2025', 0, 2);
 
 -- 14/05/2025
 INSERT INTO partidos (equipo1, equipo2, fecha, golesEquipo1, golesEquipo2) VALUES
-    ('Almería', 'Oviedo', '14-05-2025', 4, 2),
+    ('Almería', 'Oviedo', '14-05-2025', 4, 2);
 
 -- Tabla de goleadores
 
@@ -715,9 +710,7 @@ FROM partidos
 WHERE (Local = 'Almería' AND Visitante = 'Oviedo')
    OR (Local = 'Oviedo' AND Visitante = 'Almería');
 
--- cambio de nombre de columnas
-ALTER TABLE partidos
-RENAME COLUMN golesEquipo2 TO "Goles Visitante";
+
 
 -- Saca todos los goleadores  de un equipo
 
