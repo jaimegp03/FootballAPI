@@ -6,14 +6,14 @@
     <title>Añadir Equipo</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body>
+<body class="nuevo-equipo">
 
 <header>
     <h1>➕ Añadir Nuevo Equipo</h1>
     <nav><a href="{{ url_for('indice_contenido') }}">Inicio</a> | <a href="{{ url_for('logout') }}">Cerrar sesión</a></nav>
 </header>
 
-<main>
+<main class="formulario-container">
     <form method="post">
         <label for="nombre">Nombre del equipo:</label>
         <input type="text" name="nombre" required>

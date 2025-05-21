@@ -6,14 +6,14 @@
     <title>Añadir Partido</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body>
+<body class="nuevo-partido">
 
 <header>
     <h1>📅 Añadir Nuevo Partido</h1>
     <nav><a href="{{ url_for('indice_contenido') }}">Inicio</a> | <a href="{{ url_for('logout') }}">Cerrar sesión</a></nav>
 </header>
 
-<main>
+<main class="formulario-container">
     <form method="post">
         <label for="equipo1">Equipo Local:</label>
         <select name="equipo1" required>

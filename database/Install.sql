@@ -23,9 +23,9 @@ CREATE TABLE partidos (
 );
 
 CREATE TABLE usuarios (
-    username TEXT PRIMARY KEY,
-    name TEXT,
-    password TEXT
+    username TEXT PRIMARY KEY,  -- Nombre de usuario unico
+    name TEXT,                  -- Nombre real del usuario
+    password TEXT               -- Contraseña del usuario
 );
 
 -- Usuarios
@@ -210,20 +210,6 @@ INSERT INTO jugadores (nombre, edad, posicion, numero, equipo) VALUES
 ('Gonzalo Muñoz', 22, 'Delantero', 11, 'Huelva'),
 ('Alfredo Pérez', 19, 'Medio Campo', 12, 'Huelva');
 
-
--- ('sin-nombre', 99, 'sin-posicion', 2, ABS(RANDOM() % (11 - 1 + 1)) + 1);
-
--- Partidos aleatorios
-CREATE TABLE partidos (
-    id INTEGER PRIMARY KEY,     -- Identificador del partido
-    equipo1 INTEGER,            -- Clave al identificador del equipo 1
-    equipo2 INTEGER,            -- Clave al identificador del equipo 2
-    fecha DATETIME,             -- Fecha del partido
-    golesEquipo1 INTEGER,       -- Goles marcados por el equipo 1
-    golesEquipo2 INTEGER        -- Goles marcados por el equipo 2
-);
-
--- Partidos aleatorios
 
 -- 07/10/2024
 INSERT INTO partidos (equipo1, equipo2, fecha, golesEquipo1, golesEquipo2) VALUES
@@ -479,10 +465,10 @@ INSERT INTO partidos (equipo1, equipo2, fecha, golesEquipo1, golesEquipo2) VALUE
 -- Tabla de goleadores
 
 CREATE TABLE goleadores (
-  id INT PRIMARY KEY,
-  nombre VARCHAR(100),
-  equipo VARCHAR(50),
-  goles INT
+  id INT PRIMARY KEY,       -- Identificador único para cada goleador
+  nombre VARCHAR(100),      -- Nombre del jugador, con un máximo de 100 caracteres
+  equipo VARCHAR(50),       -- Nombre del equipo del jugador, hasta 50 caracteres
+  goles INT                 -- Número total de goles anotados por el jugador
 );
 
 INSERT INTO goleadores (id, nombre, equipo, goles) VALUES

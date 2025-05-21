@@ -6,14 +6,14 @@
     <title>Añadir Jugador</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body>
+<body class="nuevo-jugador">
 
 <header>
     <h1>👤 Añadir Nuevo Jugador</h1>
     <nav><a href="{{ url_for('indice_contenido') }}">Inicio</a> | <a href="{{ url_for('logout') }}">Cerrar sesión</a></nav>
 </header>
 
-<main>
+<main class="formulario-container">
     <form method="post">
         <label for="nombre">Nombre:</label>
         <input type="text" name="nombre" required>

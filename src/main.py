@@ -78,21 +78,6 @@ def obtener_equipos():
     return render_template("equipos.html", equipos=equipos)
 
 
-
-@application.route("/equipos/<id>")
-def obtener_equipo(id):
-    # Obtener un equipo concreto
-    equipo = conexion.execute_query("SELECT * FROM equipos WHERE id = ?", [id])
-    
-    # Comprobar si no hay equipos
-    if len(equipo) == 0:
-        return jsonify({"message": "Equipo no encontrado", "data": None})
-
-    # Devolver los datos del equipo en formato JSON
-    return jsonify({"message": "Equipo encontrado", "data": equipo[0]})
-
-
-
 @application.route("/horario")
 def obtener_horario_partidos():
     partidos = conexion.execute_query("""

@@ -1,5 +1,5 @@
 {
-    "mensaje": "Bienvenido a la API de la Liga de F\u00fatbol",
+    "mensaje": "Bienvenido a la Liga Deportiva de Retamar",
     "rutas_disponibles": {
       "/clasificacion": "Clasificación de la liga",
       "/equipos": "Devuelve todos los equipos",
