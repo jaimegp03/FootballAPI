@@ -80,14 +80,7 @@ def obtener_equipos():
 
 @application.route("/horario")
 def obtener_horario_partidos():
-    partidos = conexion.execute_query("""
-        SELECT p.id, e1.nombre AS equipo1, e2.nombre AS equipo2, 
-               p.fecha, p.golesEquipo1, p.golesEquipo2
-        FROM partidos p
-        JOIN equipos e1 ON p.equipo1 = e1.id
-        JOIN equipos e2 ON p.equipo2 = e2.id
-        ORDER BY p.fecha ASC;
-    """)
+    partidos = conexion.execute_query("SELECT * FROM partidos")
 
     if partidos is None:
         partidos = []
@@ -107,13 +100,12 @@ def obtener_clasificacion():
 
 @application.route("/maximos-goleadores")
 def obtener_maximos_goleadores():
-    consulta = """
+    jugadores = conexion.execute_query("""
         SELECT nombre, equipo, goles
-        FROM jugadores
+        FROM goleadores
         ORDER BY goles DESC
         LIMIT 20;
-    """
-    jugadores = conexion.execute_query(consulta)
+    """)
     if jugadores is None:
         jugadores = []
     return render_template("goleadores.html", jugadores=jugadores)
